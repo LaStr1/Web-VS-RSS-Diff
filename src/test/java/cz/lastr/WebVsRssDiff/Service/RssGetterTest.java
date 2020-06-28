@@ -26,11 +26,11 @@ class RssGetterTest {
 
         rssGetter = new RssGetter();
 
-        List<Integer> articlesNumbers;
-        articlesNumbers = rssGetter.parseRssFeed(feed);
+        List<Integer> listOfArticlesFromFeed;
+        listOfArticlesFromFeed = rssGetter.parseRssFeed(feed);
 
-        assertTrue(articlesNumbers.contains(66783280));
-        assertTrue(articlesNumbers.contains(66783260));
+        assertTrue(listOfArticlesFromFeed.contains(66783280));
+        assertTrue(listOfArticlesFromFeed.contains(66783260));
     }
 
 }
