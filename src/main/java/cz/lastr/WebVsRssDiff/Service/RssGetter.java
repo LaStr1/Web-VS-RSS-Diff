@@ -28,7 +28,7 @@ public class RssGetter {
         return articlesFromRSS;
     }
 
-    public List<Integer> parseRssFeed(SyndFeed feed) throws IOException, FeedException {
+    public List<Integer> parseRssFeed(SyndFeed feed) {
         List<SyndEntry> itemsInFeed;
         List<Integer> articlesFromRSS;
 
@@ -67,8 +67,5 @@ public class RssGetter {
     private int parseArticleItemToInteger(String articleItemAsString) {
         return Integer.parseInt(articleItemAsString);
     }
-
-
-
 
 }
