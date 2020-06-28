@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel><atom:link href="https://ihned.cz/?m=rss" rel="self" type="application/rss+xml" />
+        <image>
+            <url>https://ihned.cz/img/v2/logo_hn.svg</url>
+            <title>Hospodářské noviny</title>
+            <link>https://ihned.cz/</link>
+            <width>302</width>
+            <height>27</height>
+            <description>iHNed.cz</description>
+        </image>
+        <language>cs</language>
+        <title>Hospodářské noviny - vše</title>
+        <link>https://ihned.cz/</link>
+        <description>iHNed.cz</description>
+
+        <item>
+            <title><![CDATA[Banky hledají úspory. S prací z domova jsou spokojeny, zbavují se tak kanceláří i poboček]]></title>
+            <link>https://archiv.ihned.cz/c1-66783280-banky-hledaji-uspory-s-praci-z-domu-jsou-spokojeny-zbavuji-se-tak-kancelari-i-pobocek?utm_source=mediafed&amp;utm_medium=rss&amp;utm_campaign=mediafed</link>
+            <description><![CDATA[Pražské ústředí Raiffeisenbank, sídlící v mrakodrapu City Tower na Pankráci, čeká letos velké vyklízení. V budově, jež dlouho držela rekord nejvyšší stavby v Česku, si banka pronajímá téměř deset pater a jedno z nich, o velikosti asi poloviny...]]></description>
+            <pubDate>Fri, 26 Jun 2020 00:00:00 +0200</pubDate>
+            <guid isPermaLink="false">dce1013925351ce83f9fc26e9d3ef2d7-66783280</guid>
+            <dc:creator><![CDATA[Marek Miler]]></dc:creator>
+            <media:group>				<media:content url="https://img.ihned.cz/attachment.php/150/75088150/cPyNQ7fiERgsFVIkM1nOBvpxbL2rjuHd/jarvis_5ef4e937498e75f69b9b33e7.jpg" type="image/jpeg" medium="image" width="384" height="256">
+                <media:title type="html"><![CDATA[Česká pobočka Raiffeisenbank obývá několik pater druhé nejvyšší budovy v Česku. Teď ale zjišťuje, že tolik kanceláří vlastně nepotřebuje.]]></media:title>
+                <media:description type="html"><![CDATA[]]></media:description>
+            </media:content>				<media:content url="https://img.ihned.cz/attachment.php/170/75088170/bm3nsuIigTkN5MBPR6Wz9hyvoa0UVctq/jarvis_5ef4e937498e75f69b9b33e7.jpg" type="image/jpeg" medium="image" width="600" height="338">
+                <media:title type="html"><![CDATA[Česká pobočka Raiffeisenbank obývá několik pater druhé nejvyšší budovy v Česku. Teď ale zjišťuje, že tolik kanceláří vlastně nepotřebuje.]]></media:title>
+                <media:description type="html"><![CDATA[]]></media:description>
+            </media:content>			</media:group>
+        </item>
+
+        <item>
+            <title><![CDATA[Česká cesta k prosperitě? Podporujme regiony a důvěřujme hi-tech výrobě, shodli se experti]]></title>
+            <link>https://archiv.ihned.cz/c1-66783260-ceska-cesta-k-prosperite-podporujme-regiony-a-duverujme-hi-tech-vyrobe-shodli-se-experti?utm_source=mediafed&amp;utm_medium=rss&amp;utm_campaign=mediafed</link>
+            <description><![CDATA[Celý svět včetně Česka nyní řeší, jak se vypořádat s dopady opatření zavedených v souvislosti s pandemií koronaviru. Kromě toho je potřeba nacházet řešení pro další palčivé výzvy &#8722; klimatickou změnu a probíhající technologickou revoluci....]]></description>
+            <pubDate>Fri, 26 Jun 2020 00:00:00 +0200</pubDate>
+            <guid isPermaLink="false">aee9dddb5ac25ea6b9eb8f7dc06d002f-66783260</guid>
+            <dc:creator><![CDATA[Jan Úšela]]></dc:creator>
+            <media:group>				<media:content url="https://img.ihned.cz/attachment.php/320/75086320/WpN4jH78Kuyl3s9eE5fRFbPckrDtT2mL/jarvis_5ef4e7f3498e75f69acbf70d.jpeg" type="image/jpeg" medium="image" width="384" height="256">
+                <media:title type="html"><![CDATA[Kybernetik Vladimír Mařík (na snímku) navrhuje, aby se Česko v budoucnu spolehlo hlavně na rozvoj pokročilých technologií.]]></media:title>
+                <media:description type="html"><![CDATA[]]></media:description>
+            </media:content>				<media:content url="https://img.ihned.cz/attachment.php/340/75086340/SqsT54vwz6BibF3ndxo1f02eEMGDj7Nk/jarvis_5ef4e7f3498e75f69acbf70d.jpeg" type="image/jpeg" medium="image" width="600" height="338">
+                <media:title type="html"><![CDATA[Kybernetik Vladimír Mařík (na snímku) navrhuje, aby se Česko v budoucnu spolehlo hlavně na rozvoj pokročilých technologií.]]></media:title>
+                <media:description type="html"><![CDATA[]]></media:description>
+            </media:content>			</media:group>
+        </item>
+
+    </channel>
+</rss>
