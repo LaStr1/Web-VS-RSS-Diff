@@ -17,7 +17,7 @@ class RssGetterTest {
     RssGetter rssGetter;
 
     @Test
-    public void testRssGetterIsNotNull() throws IOException, FeedException {
+    public void testRssGetterGetArticlesItemsFromRssFeed() throws IOException, FeedException {
         String fileWithRssFeedInXML = "src/test/java/cz/lastr/WebVsRssDiff/Service/rssFeedExample.xml";
         FileInputStream fileInputStream = new FileInputStream(fileWithRssFeedInXML);
 
