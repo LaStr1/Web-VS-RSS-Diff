@@ -6,7 +6,6 @@ import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -44,14 +43,32 @@ public class RssGetter {
         List<Integer> articlesFromRSS = new ArrayList<>();
 
         for (SyndEntry item : itemsInFeed){
-            int indexOfDash = item.getUri().indexOf("-") + 1;
+            int indexOfDash = getIndexOfDash(item);
 
-            String articleItemInString = item.getUri().substring(indexOfDash);
-            int articleItem = Integer.parseInt(articleItemInString);
+            String articleItemAsString = getArticleItemAsString(item, indexOfDash);
+            int articleItemAsInteger = parseArticleItemToInteger(articleItemAsString);
 
-            System.out.println(articleItem);
-            articlesFromRSS.add(articleItem);
+            System.out.println(articleItemAsInteger);
+
+            articlesFromRSS.add(articleItemAsInteger);
         }
+
         return articlesFromRSS;
     }
+
+    private int getIndexOfDash(SyndEntry item) {
+        return item.getUri().indexOf("-") + 1;
+    }
+
+    private String getArticleItemAsString(SyndEntry item, int indexOfDash) {
+        return item.getUri().substring(indexOfDash);
+    }
+
+    private int parseArticleItemToInteger(String articleItemAsString) {
+        return Integer.parseInt(articleItemAsString);
+    }
+
+
+
+
 }
