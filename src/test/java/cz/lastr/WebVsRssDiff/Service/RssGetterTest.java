@@ -8,14 +8,13 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RssGetterTest {
 
-    private RssGetter rssGetter;
+    RssGetter rssGetter;
 
     @Test
     public void testRssGetterIsNotNull() throws IOException, FeedException {
@@ -26,7 +25,12 @@ class RssGetterTest {
         SyndFeed feed = input.build(new XmlReader(fileInputStream));
 
         rssGetter = new RssGetter();
-        assertNotNull(rssGetter.parseRssFeed(feed));
+
+        List<Integer> articlesNumbers;
+        articlesNumbers = rssGetter.parseRssFeed(feed);
+
+        assertTrue(articlesNumbers.contains(66783280));
+        assertTrue(articlesNumbers.contains(66783260));
     }
 
 }

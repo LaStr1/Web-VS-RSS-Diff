@@ -48,8 +48,6 @@ public class RssGetter {
             String articleItemAsString = getArticleItemAsString(item, indexOfDash);
             int articleItemAsInteger = parseArticleItemToInteger(articleItemAsString);
 
-            System.out.println(articleItemAsInteger);
-
             articlesFromRSS.add(articleItemAsInteger);
         }
 
