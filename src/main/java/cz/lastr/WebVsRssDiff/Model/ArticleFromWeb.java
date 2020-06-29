@@ -2,29 +2,18 @@ package cz.lastr.WebVsRssDiff.Model;
 
 public class ArticleFromWeb {
 
-    private long id;
-
     private int articleID;
     private String url;
     private String date;
     private String title;
     private String perex;
 
-    public ArticleFromWeb(long id, int articleID, String url, String date, String title, String perex) {
-        this.id = id;
+    public ArticleFromWeb(int articleID, String url, String date, String title, String perex) {
         this.articleID = articleID;
         this.url = url;
         this.date = date;
         this.title = title;
         this.perex = perex;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public int getArticleID() {

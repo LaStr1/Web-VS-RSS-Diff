@@ -2,20 +2,10 @@ package cz.lastr.WebVsRssDiff.Model;
 
 public class ArticleFromRSS {
 
-    private long id;
     private int articleID;
 
-    public ArticleFromRSS(long id, int articleID) {
-        this.id = id;
+    public ArticleFromRSS(int articleID) {
         this.articleID = articleID;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public int getArticleID() {

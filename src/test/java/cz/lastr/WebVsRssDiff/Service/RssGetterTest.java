@@ -8,17 +8,21 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RssGetterTest {
 
-    RssGetter rssGetter;
+    private RssGetter rssGetter;
 
     @Test
-    public void testRssGetterGetArticlesItemsFromRssFeed() throws IOException, FeedException {
+    public void testRssGetterGetArticlesFromRssFeed() throws IOException, FeedException, URISyntaxException {
         String fileWithRssFeedInXML = "src/test/java/cz/lastr/WebVsRssDiff/Service/rssFeedExample.xml";
+
         FileInputStream fileInputStream = new FileInputStream(fileWithRssFeedInXML);
 
         SyndFeedInput input = new SyndFeedInput();
