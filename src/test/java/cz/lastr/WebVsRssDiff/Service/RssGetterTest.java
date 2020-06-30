@@ -4,37 +4,45 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import cz.lastr.WebVsRssDiff.Model.ArticleFromRSS;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RssGetterTest {
+    private RssGetter rssGetter = new RssGetter();
 
-    private RssGetter rssGetter;
+    String fileWithRssFeedInXML = "src/test/java/cz/lastr/WebVsRssDiff/Service/rssFeedExample.xml";
+
+    private FileInputStream fileInputStream;
+
+    private SyndFeedInput input;
+    private SyndFeed feed;
+
+    private List<ArticleFromRSS> ArticlesFromFeed;
+
+    private ArticleFromRSS firstTestedArticle;
+    private ArticleFromRSS secondTestedArticle;
 
     @Test
     public void testRssGetterGetArticlesFromRssFeed() throws IOException, FeedException, URISyntaxException {
-        String fileWithRssFeedInXML = "src/test/java/cz/lastr/WebVsRssDiff/Service/rssFeedExample.xml";
+        fileInputStream = new FileInputStream(fileWithRssFeedInXML);
 
-        FileInputStream fileInputStream = new FileInputStream(fileWithRssFeedInXML);
+        input = new SyndFeedInput();
+        feed = input.build(new XmlReader(fileInputStream));
 
-        SyndFeedInput input = new SyndFeedInput();
-        SyndFeed feed = input.build(new XmlReader(fileInputStream));
+        ArticlesFromFeed = rssGetter.parseRssFeed(feed);
 
-        rssGetter = new RssGetter();
+        firstTestedArticle = new ArticleFromRSS(66783280);
+        secondTestedArticle = new ArticleFromRSS(66783260);
 
-        List<Integer> listOfArticlesFromFeed;
-        listOfArticlesFromFeed = rssGetter.parseRssFeed(feed);
-
-        assertTrue(listOfArticlesFromFeed.contains(66783280));
-        assertTrue(listOfArticlesFromFeed.contains(66783260));
+        assertTrue(ArticlesFromFeed.contains(firstTestedArticle));
+        assertTrue(ArticlesFromFeed.contains(secondTestedArticle));
     }
 
 }

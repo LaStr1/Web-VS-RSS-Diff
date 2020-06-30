@@ -5,6 +5,7 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import cz.lastr.WebVsRssDiff.Model.ArticleFromRSS;
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,9 +17,9 @@ public class RssGetter {
     public RssGetter(){
     }
 
-    public List<Integer> getArticlesFromRSS() throws IOException, FeedException {
+    public List<ArticleFromRSS> getArticlesFromRSS() throws IOException, FeedException {
         URL url = new URL("https://ihned.cz/?m=rss");
-        List<Integer> articlesFromRSS;
+        List<ArticleFromRSS> articlesFromRSS;
 
         SyndFeedInput input = new SyndFeedInput();
         SyndFeed feed = input.build(new XmlReader(url));
@@ -28,9 +29,9 @@ public class RssGetter {
         return articlesFromRSS;
     }
 
-    public List<Integer> parseRssFeed(SyndFeed feed) {
+    public List<ArticleFromRSS> parseRssFeed(SyndFeed feed) {
         List<SyndEntry> itemsInFeed;
-        List<Integer> articlesFromRSS;
+        List<ArticleFromRSS> articlesFromRSS;
 
         itemsInFeed = feed.getEntries();
 
@@ -39,16 +40,18 @@ public class RssGetter {
         return articlesFromRSS;
     }
 
-    private List<Integer> getArticlesFromFeed(List<SyndEntry> itemsInFeed) {
-        List<Integer> articlesFromRSS = new ArrayList<>();
+    private List<ArticleFromRSS> getArticlesFromFeed(List<SyndEntry> itemsInFeed) {
+        List<ArticleFromRSS> articlesFromRSS = new ArrayList<>();
 
         for (SyndEntry item : itemsInFeed){
             int indexOfDash = getIndexOfDash(item);
 
-            String articleItemAsString = getArticleItemAsString(item, indexOfDash);
-            int articleItemAsInteger = parseArticleItemToInteger(articleItemAsString);
+            String articleAsString = getArticleAsString(item, indexOfDash);
+            int articleAsInteger = parseArticleToInteger(articleAsString);
 
-            articlesFromRSS.add(articleItemAsInteger);
+            ArticleFromRSS articleFromRSS = new ArticleFromRSS(articleAsInteger);
+
+            articlesFromRSS.add(articleFromRSS);
         }
 
         return articlesFromRSS;
@@ -58,11 +61,11 @@ public class RssGetter {
         return item.getUri().indexOf("-") + 1;
     }
 
-    private String getArticleItemAsString(SyndEntry item, int indexOfDash) {
+    private String getArticleAsString(SyndEntry item, int indexOfDash) {
         return item.getUri().substring(indexOfDash);
     }
 
-    private int parseArticleItemToInteger(String articleItemAsString) {
+    private int parseArticleToInteger(String articleItemAsString) {
         return Integer.parseInt(articleItemAsString);
     }
 
