@@ -32,6 +32,8 @@ class WebGetterTest {
         File testPage = new File("src/test/java/cz/lastr/WebVsRssDiff/Service/archiv.ihned.czWebPage.html");
         Document document = Jsoup.parse(testPage,"UTF-8");
 
-        assertNotNull(document);
+        ArticlesFromFeed = webGetter.parseWebPage(document);
+
+        assertTrue(ArticlesFromFeed.contains(firstTestedArticle));
     }
 }
