@@ -1,5 +1,7 @@
 package cz.lastr.WebVsRssDiff.Model;
 
+import java.util.Objects;
+
 public class ArticleFromWeb {
 
     private int articleID;
@@ -54,5 +56,22 @@ public class ArticleFromWeb {
 
     public void setPerex(String perex) {
         this.perex = perex;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArticleFromWeb that = (ArticleFromWeb) o;
+        return articleID == that.articleID &&
+                Objects.equals(url, that.url) &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(perex, that.perex);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(articleID, url, date, title, perex);
     }
 }

@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,7 +29,7 @@ class RssGetterTest {
     private ArticleFromRSS secondTestedArticle;
 
     @Test
-    public void testRssGetterGetArticlesFromRssFeed() throws IOException, FeedException, URISyntaxException {
+    public void testRssGetterGetArticlesFromRssFeed() throws IOException, FeedException {
         fileInputStream = new FileInputStream(fileWithRssFeedInXML);
 
         input = new SyndFeedInput();
