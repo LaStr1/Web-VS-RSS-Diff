@@ -26,14 +26,18 @@ public class WebGetter {
     }
 
     public List<ArticleFromWeb> parseWebPage(Document document){
-        List<ArticleFromWeb> articlesFromWebPage = new ArrayList<>();
+        List<String> allUrls = getAllUrls(document);
+        List<Integer> allArticleID = getAllArticleID(allUrls);
+        List<String> allDates = getAllDates(document);
+        List<String> allTitles = getAllTitles(document);
+        List<String> allPerexs = getAllPerexs(document);
 
-        List<Integer> allArticleID = new ArrayList<>();
+        List<ArticleFromWeb> articlesFromWebPage = makeAllArticles(allUrls, allArticleID, allDates, allTitles, allPerexs);
+        return articlesFromWebPage;
+    }
+
+    private List<String> getAllUrls(Document document) {
         List<String> allUrls = new ArrayList<>();
-        List<String> allDates = new ArrayList<>();
-        List<String> allTitles = new ArrayList<>();
-        List<String> allPerexs = new ArrayList<>();
-
         Elements urls = document.select(".article-title > a:eq(0)");
         for (Element url : urls){
             String urlOfArticleWithoutPrefix = url.attr("href");
@@ -41,20 +45,29 @@ public class WebGetter {
             String urlOfArticle = prefix.concat(urlOfArticleWithoutPrefix);
 
             allUrls.add(urlOfArticle);
+        }
+        return allUrls;
+    }
 
-
+    private List<Integer> getAllArticleID(List<String> allUrls) {
+        List<Integer> allArticleID = new ArrayList<>();
+        for (String url : allUrls){
             String charBeforeArticleID = "c1-";
             int lengthOfCharBeforeArticleID = charBeforeArticleID.length();
 
-            int indexOfCharBeforeArticleID = urlOfArticle.indexOf(charBeforeArticleID) + lengthOfCharBeforeArticleID;
+            int indexOfCharBeforeArticleID = url.indexOf(charBeforeArticleID) + lengthOfCharBeforeArticleID;
             int lengthOfArticleID = 8;
 
-            String articleIDAsString = urlOfArticle.substring(indexOfCharBeforeArticleID, indexOfCharBeforeArticleID + lengthOfArticleID);
+            String articleIDAsString = url.substring(indexOfCharBeforeArticleID, indexOfCharBeforeArticleID + lengthOfArticleID);
             int articleID = Integer.parseInt(articleIDAsString);
 
             allArticleID.add(articleID);
         }
+        return allArticleID;
+    }
 
+    private List<String> getAllDates(Document document) {
+        List<String> allDates = new ArrayList<>();
         Elements dates = document.select(".article-time");
         for (Element date : dates){
             String dateOfArticle;
@@ -62,7 +75,11 @@ public class WebGetter {
 
             allDates.add(dateOfArticle);
         }
+        return allDates;
+    }
 
+    private List<String> getAllTitles(Document document) {
+        List<String> allTitles = new ArrayList<>();
         Elements titles = document.select(".article-title");
         for (Element title : titles){
             String titleOfArticle;
@@ -70,6 +87,11 @@ public class WebGetter {
 
             allTitles.add(titleOfArticle);
         }
+        return allTitles;
+    }
+
+    private List<String> getAllPerexs(Document document) {
+        List<String> allPerexs = new ArrayList<>();
 
         Elements perexs = document.select(".article-perex");
         for (Element perex : perexs){
@@ -78,6 +100,16 @@ public class WebGetter {
 
             allPerexs.add(perexOfArticle);
         }
+        return allPerexs;
+    }
+
+    private List<ArticleFromWeb> makeAllArticles(List<String> allUrls,
+                                                 List<Integer> allArticleID,
+                                                 List<String> allDates,
+                                                 List<String> allTitles,
+                                                 List<String> allPerexs) {
+
+        List<ArticleFromWeb> articlesFromWebPage = new ArrayList<>();
 
         int allItemsCount = allArticleID.size();
         for (int itemsCount = 0; itemsCount < allItemsCount; ++itemsCount) {
@@ -91,7 +123,6 @@ public class WebGetter {
 
             articlesFromWebPage.add(article);
         }
-
         return articlesFromWebPage;
     }
 }
