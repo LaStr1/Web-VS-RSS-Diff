@@ -3,6 +3,8 @@ package cz.lastr.WebVsRssDiff.Service;
 import cz.lastr.WebVsRssDiff.Model.ArticleFromWeb;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -27,10 +29,11 @@ class WebGetterTest {
                 "https://archiv.ihned.cz/c1-66783210-kureci-kartel-u-pilgrim-s",
                 "26. 6.",
                 "Kuřecí kartel u Pilgrim's",
-                "Americké ministerstvo spravedlnosti přišlo začátkem měsíce se zprávou, že producent kuřat Pilgrim's Pride spolu s dalšími na trhu fixoval...");
+                "Komentář Marka Dongresa Americké ministerstvo spravedlnosti přišlo začátkem měsíce se zprávou, že producent kuřat Pilgrim's Pride spolu s dalšími na trhu fixoval...");
 
-        File testPage = new File("src/test/java/cz/lastr/WebVsRssDiff/Service/archiv.ihned.czWebPage.html");
-        Document document = Jsoup.parse(testPage,"UTF-8");
+        File testPage = new File("src/test/java/cz/lastr/WebVsRssDiff/Service/testPageArchiv.ihned.cz.html");
+
+        Document document = Jsoup.parse(testPage,"windows-1250");
 
         ArticlesFromFeed = webGetter.parseWebPage(document);
 

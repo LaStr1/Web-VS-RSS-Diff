@@ -62,12 +62,12 @@ public class ArticleFromWeb {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ArticleFromWeb that = (ArticleFromWeb) o;
-        return articleID == that.articleID &&
-                Objects.equals(url, that.url) &&
-                Objects.equals(date, that.date) &&
-                Objects.equals(title, that.title) &&
-                Objects.equals(perex, that.perex);
+        ArticleFromWeb article = (ArticleFromWeb) o;
+        return articleID == article.articleID &&
+                Objects.equals(url, article.url) &&
+                Objects.equals(date, article.date) &&
+                Objects.equals(title, article.title) &&
+                Objects.equals(perex, article.perex);
     }
 
     @Override
