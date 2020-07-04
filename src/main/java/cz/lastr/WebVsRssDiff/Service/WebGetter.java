@@ -1,6 +1,7 @@
 package cz.lastr.WebVsRssDiff.Service;
 
 import cz.lastr.WebVsRssDiff.Model.ArticleFromWeb;
+import jdk.internal.org.objectweb.asm.tree.TryCatchBlockNode;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -12,12 +13,11 @@ import java.util.List;
 
 public class WebGetter {
 
-    public List<ArticleFromWeb> getArticlesFromWeb() throws IOException {
+    public List<ArticleFromWeb> getArticlesFromWeb(String fromDate) {
         String urlWithoutDate = "https://archiv.ihned.cz/?p=0A0000&archive[source_date]=";
-        String fromDate = "2020-06-30";
-        String urlWithDate = urlWithoutDate + fromDate;
+        String url = urlWithoutDate + fromDate;
 
-        Document document = Jsoup.connect(urlWithDate).get();
+        Document document = getWebPage(url);
 
         List<ArticleFromWeb> articlesFromWeb;
         articlesFromWeb = parseWebPage(document);
@@ -25,7 +25,27 @@ public class WebGetter {
         return articlesFromWeb;
     }
 
-    public List<ArticleFromWeb> parseWebPage(Document document){
+    private Document getWebPage(String url) {
+        Document htmlPage = null;
+        try {
+            htmlPage = getHtmlPage(url);
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        return htmlPage;
+    }
+
+    private Document getHtmlPage(String url) throws IOException {
+        String userAgent = "Mozilla/5.0 (Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0";
+
+        return Jsoup
+                .connect(url)
+                .userAgent(userAgent)
+                .get();
+    }
+
+    public List<ArticleFromWeb> parseWebPage(Document document) {
         List<String> allUrls = getAllUrls(document);
         List<Integer> allArticleID = getAllArticleID(allUrls);
         List<String> allDates = getAllDates(document);
