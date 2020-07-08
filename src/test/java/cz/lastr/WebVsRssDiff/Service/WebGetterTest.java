@@ -3,15 +3,16 @@ package cz.lastr.WebVsRssDiff.Service;
 import cz.lastr.WebVsRssDiff.Model.ArticleFromWeb;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.junit.jupiter.api.Test;
+
+import static org.mockito.Mockito.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.DatagramSocket;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WebGetterTest {
 

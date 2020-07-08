@@ -6,27 +6,52 @@ import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import cz.lastr.WebVsRssDiff.Model.ArticleFromRSS;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class RssGetter {
 
-    public RssGetter(){
-    }
-
-    public List<ArticleFromRSS> getArticlesFromRSS() throws IOException, FeedException {
-        URL url = new URL("https://ihned.cz/?m=rss");
+    public List<ArticleFromRSS> getArticlesFromRSS() {
         List<ArticleFromRSS> articlesFromRSS;
 
-        SyndFeedInput input = new SyndFeedInput();
-        SyndFeed feed = input.build(new XmlReader(url));
-
+        SyndFeed feed = getSyndFeed();
         articlesFromRSS = parseRssFeed(feed);
 
         return articlesFromRSS;
+    }
+
+    private SyndFeed getSyndFeed() {
+        URL url = getUrl();
+        SyndFeed feed = null;
+        SyndFeedInput input = new SyndFeedInput();
+        try {
+            XmlReader reader = new XmlReader(url);
+            feed = input.build(reader);
+        }
+        catch (IOException ioException){
+            System.out.println("ioException");
+        }
+        catch (FeedException feedException){
+            System.out.println("feedException");
+        }
+        return feed;
+    }
+
+    private URL getUrl()  {
+        URL url = null;
+        try {
+            url = new URL("https://ihned.cz/?m=rss");
+        }
+        catch (MalformedURLException malformedURLException){
+            System.out.println("malformedURLException");
+        }
+        return url;
     }
 
     public List<ArticleFromRSS> parseRssFeed(SyndFeed feed) {

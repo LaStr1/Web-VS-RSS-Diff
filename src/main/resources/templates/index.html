@@ -1,33 +1,28 @@
 <!DOCTYPE HTML>
-
-<html
-        xmlns:th="http://www.thymeleaf.org"
-        lang="en"
->
-
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
     <title>HN web vs RSS diff</title>
 </head>
 
 <body>
-
-<p>Different articles:
-
+<p>Different articles:</p>
+<p th:text="${date}"></p>
 <table>
-    <tr>
-        <th>Name:</th>
-        <th>Link:</th>
-
-    </tr>
-
-    <tr>
-        <th th:text="${articles}"></th>
-
-    </tr>
-
+    <th:block th:each="article:${articles}">
+        <tr>
+            <td th:text="${article.getDate()}"></td>
+            <td>
+                <a th:href="${article.getUrl()}" th:text="${article.getTitle()}"></a>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td th:text="${article.getPerex()}"></td>
+        </tr>
+    </th:block>
 </table>
-
 </body>
 
 </html>
