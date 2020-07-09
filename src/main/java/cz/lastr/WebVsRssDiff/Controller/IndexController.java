@@ -1,22 +1,22 @@
 package cz.lastr.WebVsRssDiff.Controller;
 
-import cz.lastr.WebVsRssDiff.Model.ArticleFromWeb;
-import cz.lastr.WebVsRssDiff.Service.WebGetter;
+import cz.lastr.WebVsRssDiff.Service.RssAndWebGetter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 @Controller
 public class IndexController {
-    WebGetter webGetter;
+    RssAndWebGetter rssAndWebGetter;
 
-    private List<ArticleFromWeb> ArticlesFromFeed;
-
-    public IndexController(WebGetter webGetter){
-        this.webGetter = webGetter;
+    public IndexController(RssAndWebGetter rssAndWebGetter){
+        this.rssAndWebGetter = rssAndWebGetter;
     }
 
     @GetMapping
@@ -25,9 +25,21 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping(value = "/{date}")
-    public String fromDate(@PathVariable String date, Model model){
-        model.addAttribute("date" , date);
+    @GetMapping(value = "/{fromDate}")
+    public String fromDate(@PathVariable String fromDate){
+        LocalDate validDate = null;
+        DateTimeFormatter formatter = DateTimeFormatter
+                .ofPattern("uuuu-MM-dd")
+                .withResolverStyle(ResolverStyle.STRICT);
+
+        try {
+            validDate = LocalDate.parse(fromDate,formatter);
+        }
+        catch (DateTimeException dateTimeParseException){
+            System.out.println(dateTimeParseException.toString());
+        }
+
+        rssAndWebGetter.getDataFromRssAndWeb(fromDate);
 
         return "index";
     }
