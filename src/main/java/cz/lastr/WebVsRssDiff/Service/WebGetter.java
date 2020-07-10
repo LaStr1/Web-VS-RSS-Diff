@@ -15,13 +15,15 @@ import java.util.List;
 public class WebGetter {
 
     public List<ArticleFromWeb> getArticlesFromWeb(String fromDate) {
+        List<ArticleFromWeb> articlesFromWeb = new ArrayList<>();
         String urlWithoutDate = "https://archiv.ihned.cz/?p=0A0000&archive[source_date]=";
         String url = urlWithoutDate + fromDate;
 
         Document document = getWebPage(url);
 
-        List<ArticleFromWeb> articlesFromWeb;
-        articlesFromWeb = parseWebPage(document);
+        if(document != null) {
+            articlesFromWeb = parseWebPage(document);
+        }
 
         return articlesFromWeb;
     }
@@ -31,8 +33,8 @@ public class WebGetter {
         try {
             htmlPage = getHtmlPage(url);
         }
-        catch (IOException e){
-            e.printStackTrace();
+        catch (IOException ioException){
+            System.out.println(ioException.toString());
         }
         return htmlPage;
     }

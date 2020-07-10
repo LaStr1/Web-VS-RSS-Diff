@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 @Controller
@@ -34,12 +34,11 @@ public class IndexController {
 
         try {
             validDate = LocalDate.parse(fromDate,formatter);
+            rssAndWebGetter.getDataFromRssAndWeb(validDate.toString());
         }
-        catch (DateTimeException dateTimeParseException){
+        catch (DateTimeParseException dateTimeParseException){
             System.out.println(dateTimeParseException.toString());
         }
-
-        rssAndWebGetter.getDataFromRssAndWeb(fromDate);
 
         return "index";
     }
