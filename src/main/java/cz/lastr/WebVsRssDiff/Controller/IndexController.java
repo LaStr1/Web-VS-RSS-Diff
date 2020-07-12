@@ -1,6 +1,8 @@
 package cz.lastr.WebVsRssDiff.Controller;
 
 import cz.lastr.WebVsRssDiff.Service.RssAndWebGetter;
+import cz.lastr.WebVsRssDiff.Service.RssArticleService;
+import cz.lastr.WebVsRssDiff.Service.WebArticleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +17,13 @@ import java.time.format.ResolverStyle;
 public class IndexController {
     RssAndWebGetter rssAndWebGetter;
 
-    public IndexController(RssAndWebGetter rssAndWebGetter){
+    RssArticleService rssArticleService;
+    WebArticleService webArticleService;
+
+    public IndexController(RssAndWebGetter rssAndWebGetter, RssArticleService rssArticleService, WebArticleService webArticleService){
         this.rssAndWebGetter = rssAndWebGetter;
+        this.rssArticleService = rssArticleService;
+        this.webArticleService = webArticleService;
     }
 
     @GetMapping
@@ -25,7 +32,7 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping(value = "/{fromDate}")
+    @GetMapping(value = "/{fromDate}/")
     public String fromDate(@PathVariable String fromDate){
         LocalDate validDate = null;
         DateTimeFormatter formatter = DateTimeFormatter

@@ -5,11 +5,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.*;
-
 import java.io.File;
 import java.io.IOException;
-import java.net.DatagramSocket;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,8 +16,6 @@ class WebGetterTest {
     private WebGetter webGetter = new WebGetter();
 
     private ArticleFromWeb firstTestedArticle;
-    private ArticleFromWeb secondTestedArticle;
-
     private List<ArticleFromWeb> ArticlesFromFeed;
 
     @Test
