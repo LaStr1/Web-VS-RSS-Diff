@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class RssGetterTest {
     private RssGetter rssGetter = new RssGetter();
 
-    String fileWithRssFeedInXML = "src/test/java/cz/lastr/WebVsRssDiff/Service/rssFeedExample.xml";
+    String fileWithRssFeedInXML = "src/test/java/cz/lastr/WebVsRssDiff/Service/resources/rssFeedExample.xml";
 
     private FileInputStream fileInputStream;
 

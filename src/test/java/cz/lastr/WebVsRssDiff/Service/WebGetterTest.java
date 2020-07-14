@@ -27,7 +27,7 @@ class WebGetterTest {
                 "Kuřecí kartel u Pilgrim's",
                 "Komentář Marka Dongresa Americké ministerstvo spravedlnosti přišlo začátkem měsíce se zprávou, že producent kuřat Pilgrim's Pride spolu s dalšími na trhu fixoval...");
 
-        File testPage = new File("src/test/java/cz/lastr/WebVsRssDiff/Service/testPageArchiv.ihned.cz.html");
+        File testPage = new File("src/test/java/cz/lastr/WebVsRssDiff/Service/resources/testPageArchiv.ihned.cz.html");
 
         Document document = Jsoup.parse(testPage,"windows-1250");
 

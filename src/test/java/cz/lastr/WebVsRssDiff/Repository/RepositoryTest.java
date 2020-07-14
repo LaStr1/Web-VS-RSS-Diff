@@ -1,7 +1,9 @@
-package cz.lastr.WebVsRssDiff.Service;
+package cz.lastr.WebVsRssDiff.Repository;
 
 import cz.lastr.WebVsRssDiff.ModelHibernate.ArticleFromRSS;
 import cz.lastr.WebVsRssDiff.ModelHibernate.ArticleFromWeb;
+import cz.lastr.WebVsRssDiff.Service.RssArticleService;
+import cz.lastr.WebVsRssDiff.Service.WebArticleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
