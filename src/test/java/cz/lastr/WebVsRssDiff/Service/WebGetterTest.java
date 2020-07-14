@@ -1,6 +1,6 @@
 package cz.lastr.WebVsRssDiff.Service;
 
-import cz.lastr.WebVsRssDiff.Model.ArticleFromWeb;
+import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
@@ -15,12 +15,12 @@ class WebGetterTest {
 
     private WebGetter webGetter = new WebGetter();
 
-    private ArticleFromWeb firstTestedArticle;
-    private List<ArticleFromWeb> ArticlesFromFeed;
+    private WebArticle firstTestedArticle;
+    private List<WebArticle> ArticlesFromFeed;
 
     @Test
     public void testWebGetterGetArticlesFromWeb() throws IOException {
-        firstTestedArticle = new ArticleFromWeb(
+        firstTestedArticle = new WebArticle(
                 66783210,
                 "https://archiv.ihned.cz/c1-66783210-kureci-kartel-u-pilgrim-s",
                 "26. 6.",

@@ -4,7 +4,7 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
-import cz.lastr.WebVsRssDiff.Model.ArticleFromRSS;
+import cz.lastr.WebVsRssDiff.Model.RssArticle;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
@@ -23,10 +23,10 @@ class RssGetterTest {
     private SyndFeedInput input;
     private SyndFeed feed;
 
-    private List<ArticleFromRSS> ArticlesFromFeed;
+    private List<RssArticle> ArticlesFromFeed;
 
-    private ArticleFromRSS firstTestedArticle;
-    private ArticleFromRSS secondTestedArticle;
+    private RssArticle firstTestedArticle;
+    private RssArticle secondTestedArticle;
 
     @Test
     public void testRssGetterGetArticlesFromRssFeed() throws IOException, FeedException {
@@ -37,8 +37,8 @@ class RssGetterTest {
 
         ArticlesFromFeed = rssGetter.parseRssFeed(feed);
 
-        firstTestedArticle = new ArticleFromRSS(66783280);
-        secondTestedArticle = new ArticleFromRSS(66783260);
+        firstTestedArticle = new RssArticle(66783280);
+        secondTestedArticle = new RssArticle(66783260);
 
         assertTrue(ArticlesFromFeed.contains(firstTestedArticle));
         assertTrue(ArticlesFromFeed.contains(secondTestedArticle));

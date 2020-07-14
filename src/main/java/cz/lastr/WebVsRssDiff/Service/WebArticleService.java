@@ -1,6 +1,6 @@
 package cz.lastr.WebVsRssDiff.Service;
 
-import cz.lastr.WebVsRssDiff.ModelHibernate.ArticleFromWeb;
+import cz.lastr.WebVsRssDiff.ModelHibernate.WebArticle;
 import cz.lastr.WebVsRssDiff.Repository.WebArticleRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +15,11 @@ public class WebArticleService {
         this.webArticleRepository = webArticleRepository;
     }
 
-    public List<ArticleFromWeb> findAll(){
+    public List<WebArticle> findAll(){
         return webArticleRepository.findAll();
     }
 
-    public void save(List<ArticleFromWeb> articles){
+    public void save(List<WebArticle> articles){
         webArticleRepository.saveAll(articles);
     }
 }

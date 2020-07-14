@@ -2,11 +2,11 @@ package cz.lastr.WebVsRssDiff.Model;
 
 import java.util.Objects;
 
-public class ArticleFromRSS {
+public class RssArticle {
 
     private int articleID;
 
-    public ArticleFromRSS(int articleID) {
+    public RssArticle(int articleID) {
         this.articleID = articleID;
     }
 
@@ -25,7 +25,7 @@ public class ArticleFromRSS {
         if (o == null || getClass() != o.getClass())
             return false;
 
-        ArticleFromRSS that = (ArticleFromRSS) o;
+        RssArticle that = (RssArticle) o;
 
         return articleID == that.articleID;
     }

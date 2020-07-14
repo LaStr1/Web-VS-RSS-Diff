@@ -1,7 +1,7 @@
 package cz.lastr.WebVsRssDiff.Repository;
 
-import cz.lastr.WebVsRssDiff.ModelHibernate.ArticleFromRSS;
-import cz.lastr.WebVsRssDiff.ModelHibernate.ArticleFromWeb;
+import cz.lastr.WebVsRssDiff.ModelHibernate.RssArticle;
+import cz.lastr.WebVsRssDiff.ModelHibernate.WebArticle;
 import cz.lastr.WebVsRssDiff.Service.RssArticleService;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
 import org.junit.jupiter.api.Test;
@@ -25,10 +25,10 @@ public class RepositoryTest {
 
     @Test
     public void saveRssArticleTest(){
-        ArticleFromRSS rssArticle = new ArticleFromRSS(
+        RssArticle rssArticle = new RssArticle(
                 1,
                 66783210);
-        List<ArticleFromRSS> rssArticlesList = new ArrayList<>();
+        List<RssArticle> rssArticlesList = new ArrayList<>();
 
         rssArticlesList.add(rssArticle);
         rssArticleService.save(rssArticlesList);
@@ -38,7 +38,7 @@ public class RepositoryTest {
     }
     @Test
     public void saveWebArticleTest(){
-        ArticleFromWeb webArticle = new ArticleFromWeb(
+        WebArticle webArticle = new WebArticle(
                 1,
                 66783210,
                 "https://archiv.ihned.cz/c1-66783210-kureci-kartel-u-pilgrim-s",
@@ -46,7 +46,7 @@ public class RepositoryTest {
                 "Kuřecí kartel u Pilgrim's",
                 "Komentář Marka Dongresa Americké ministerstvo spravedlnosti přišlo začátkem měsíce se zprávou, že producent kuřat Pilgrim's Pride spolu s dalšími na trhu fixoval...");
 
-        List<ArticleFromWeb> webArticlesList = new ArrayList<>();
+        List<WebArticle> webArticlesList = new ArrayList<>();
         webArticlesList.add(webArticle);
 
         webArticleService.save(webArticlesList);

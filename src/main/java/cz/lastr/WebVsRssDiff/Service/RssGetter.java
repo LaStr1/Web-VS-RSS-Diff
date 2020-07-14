@@ -5,7 +5,7 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
-import cz.lastr.WebVsRssDiff.Model.ArticleFromRSS;
+import cz.lastr.WebVsRssDiff.Model.RssArticle;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -17,8 +17,8 @@ import java.util.List;
 @Service
 public class RssGetter {
 
-    public List<ArticleFromRSS> getArticlesFromRSS() {
-        List<ArticleFromRSS> articlesFromRSS;
+    public List<RssArticle> getArticlesFromRSS() {
+        List<RssArticle> articlesFromRSS;
 
         SyndFeed feed = getSyndFeed();
         articlesFromRSS = parseRssFeed(feed);
@@ -54,9 +54,9 @@ public class RssGetter {
         return url;
     }
 
-    public List<ArticleFromRSS> parseRssFeed(SyndFeed feed) {
+    public List<RssArticle> parseRssFeed(SyndFeed feed) {
         List<SyndEntry> itemsInFeed;
-        List<ArticleFromRSS> articlesFromRSS;
+        List<RssArticle> articlesFromRSS;
 
         itemsInFeed = feed.getEntries();
 
@@ -65,8 +65,8 @@ public class RssGetter {
         return articlesFromRSS;
     }
 
-    private List<ArticleFromRSS> getArticlesFromFeed(List<SyndEntry> itemsInFeed) {
-        List<ArticleFromRSS> articlesFromRSS = new ArrayList<>();
+    private List<RssArticle> getArticlesFromFeed(List<SyndEntry> itemsInFeed) {
+        List<RssArticle> articlesFromRSS = new ArrayList<>();
 
         for (SyndEntry item : itemsInFeed){
             int indexOfDash = getIndexOfDash(item);
@@ -74,9 +74,9 @@ public class RssGetter {
             String articleAsString = getArticleAsString(item, indexOfDash);
             int articleAsInteger = parseArticleToInteger(articleAsString);
 
-            ArticleFromRSS articleFromRSS = new ArticleFromRSS(articleAsInteger);
+            RssArticle rssArticle = new RssArticle(articleAsInteger);
 
-            articlesFromRSS.add(articleFromRSS);
+            articlesFromRSS.add(rssArticle);
         }
 
         return articlesFromRSS;

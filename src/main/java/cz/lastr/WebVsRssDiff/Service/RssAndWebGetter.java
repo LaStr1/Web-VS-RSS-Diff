@@ -1,7 +1,7 @@
 package cz.lastr.WebVsRssDiff.Service;
 
-import cz.lastr.WebVsRssDiff.Model.ArticleFromRSS;
-import cz.lastr.WebVsRssDiff.Model.ArticleFromWeb;
+import cz.lastr.WebVsRssDiff.Model.RssArticle;
+import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,10 +17,10 @@ public class RssAndWebGetter {
     }
 
     public void getDataFromRssAndWeb(String fromDate) {
-        List<ArticleFromRSS> rssFeed = rssGetter.getArticlesFromRSS();
+        List<RssArticle> rssFeed = rssGetter.getArticlesFromRSS();
         // save to db
 
-        List<ArticleFromWeb> webFeed = webGetter.getArticlesFromWeb(fromDate);
+        List<WebArticle> webFeed = webGetter.getArticlesFromWeb(fromDate);
         // save to db
 
     }

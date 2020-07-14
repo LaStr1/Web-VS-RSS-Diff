@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class ArticleFromRSS {
+public class RssArticle {
 
     @Id
     @GeneratedValue
@@ -13,11 +13,11 @@ public class ArticleFromRSS {
 
     private int articleID;
 
-    public ArticleFromRSS(){
+    public RssArticle(){
 
     }
 
-    public ArticleFromRSS(long id, int articleID) {
+    public RssArticle(long id, int articleID) {
         this.id = id;
         this.articleID = articleID;
     }

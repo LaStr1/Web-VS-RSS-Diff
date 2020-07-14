@@ -1,21 +1,44 @@
-package cz.lastr.WebVsRssDiff.Model;
+package cz.lastr.WebVsRssDiff.ModelHibernate;
 
-import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-public class ArticleFromWeb {
+@Entity
+public class WebArticle {
+
+    @Id
+    @GeneratedValue
+    private long id;
 
     private int articleID;
+
     private String url;
+
     private String date;
+
     private String title;
+
     private String perex;
 
-    public ArticleFromWeb(int articleID, String url, String date, String title, String perex) {
+    public WebArticle(){
+
+    }
+    public WebArticle(long id, int articleID, String url, String date, String title, String perex) {
+        this.id = id;
         this.articleID = articleID;
         this.url = url;
         this.date = date;
         this.title = title;
         this.perex = perex;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getArticleID() {
@@ -56,22 +79,5 @@ public class ArticleFromWeb {
 
     public void setPerex(String perex) {
         this.perex = perex;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ArticleFromWeb article = (ArticleFromWeb) o;
-        return articleID == article.articleID &&
-                Objects.equals(url, article.url) &&
-                Objects.equals(date, article.date) &&
-                Objects.equals(title, article.title) &&
-                Objects.equals(perex, article.perex);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(articleID, url, date, title, perex);
     }
 }
