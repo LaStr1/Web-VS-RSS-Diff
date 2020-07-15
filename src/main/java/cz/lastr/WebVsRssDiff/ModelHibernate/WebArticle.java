@@ -3,6 +3,7 @@ package cz.lastr.WebVsRssDiff.ModelHibernate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class WebArticle {
@@ -79,5 +80,22 @@ public class WebArticle {
 
     public void setPerex(String perex) {
         this.perex = perex;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WebArticle article = (WebArticle) o;
+        return articleID == article.articleID &&
+                Objects.equals(url, article.url) &&
+                Objects.equals(date, article.date) &&
+                Objects.equals(title, article.title) &&
+                Objects.equals(perex, article.perex);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(articleID, url, date, title, perex);
     }
 }
