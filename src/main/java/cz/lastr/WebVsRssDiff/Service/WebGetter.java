@@ -142,7 +142,12 @@ public class WebGetter {
             String title = allTitles.get(itemsCount);
             String perex = allPerexs.get(itemsCount);
 
-            WebArticle article = new WebArticle(articleID, url, date, title, perex);
+            WebArticle article = new WebArticle();
+            article.setArticleID(articleID);
+            article.setUrl(url);
+            article.setDate(date);
+            article.setTitle(title);
+            article.setPerex(perex);
 
             articlesFromWebPage.add(article);
         }

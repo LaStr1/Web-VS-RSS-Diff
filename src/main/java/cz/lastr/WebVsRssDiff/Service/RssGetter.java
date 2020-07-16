@@ -74,7 +74,8 @@ public class RssGetter {
             String articleAsString = getArticleAsString(item, indexOfDash);
             int articleAsInteger = parseArticleToInteger(articleAsString);
 
-            RssArticle rssArticle = new RssArticle(articleAsInteger);
+            RssArticle rssArticle = new RssArticle();
+            rssArticle.setArticleID(articleAsInteger);
 
             articlesFromRSS.add(rssArticle);
         }

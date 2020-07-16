@@ -1,7 +1,7 @@
 package cz.lastr.WebVsRssDiff.Repository;
 
-import cz.lastr.WebVsRssDiff.ModelHibernate.RssArticle;
-import cz.lastr.WebVsRssDiff.ModelHibernate.WebArticle;
+import cz.lastr.WebVsRssDiff.Model.RssArticle;
+import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import cz.lastr.WebVsRssDiff.Service.RssArticleService;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,18 +41,18 @@ public class DiffBetweenWebAndRssTest {
 
     @BeforeEach
     private void setup(){
-        webArticle1 = new WebArticle(1, 61111110, "https://", "1. 7.", "Title 1", "Text 1");
-        webArticle2 = new WebArticle(2, 62222220, "https://", "1. 7.", "Title 2", "Text 2");
-        webArticle3 = new WebArticle(3, 63333330, "https://", "1. 7.", "Title 3", "Text 3");
-        webArticle4 = new WebArticle(4, 64444440, "https://", "1. 7.", "Title 4", "Text 4");
-        webArticle5 = new WebArticle(5, 65555550, "https://", "1. 7.", "Title 5", "Text 5");
-        webArticle6 = new WebArticle(6, 66666660, "https://", "1. 7.", "Title 6", "Text 6");
-        webArticle7 = new WebArticle(7, 67777770, "https://", "1. 7.", "Title 7", "Text 7");
+        webArticle1 = new WebArticle(61111110, "https://", "1. 7.", "Title 1", "Text 1");
+        webArticle2 = new WebArticle(62222220, "https://", "1. 7.", "Title 2", "Text 2");
+        webArticle3 = new WebArticle(63333330, "https://", "1. 7.", "Title 3", "Text 3");
+        webArticle4 = new WebArticle(64444440, "https://", "1. 7.", "Title 4", "Text 4");
+        webArticle5 = new WebArticle(65555550, "https://", "1. 7.", "Title 5", "Text 5");
+        webArticle6 = new WebArticle(66666660, "https://", "1. 7.", "Title 6", "Text 6");
+        webArticle7 = new WebArticle(67777770, "https://", "1. 7.", "Title 7", "Text 7");
 
-        rssArticle1 = new RssArticle(1, 61111110);
-        rssArticle2 = new RssArticle(2, 62222220);
-        rssArticle3 = new RssArticle(4, 64444440);
-        rssArticle4 = new RssArticle(7, 67777770);
+        rssArticle1 = new RssArticle(61111110);
+        rssArticle2 = new RssArticle(62222220);
+        rssArticle3 = new RssArticle(64444440);
+        rssArticle4 = new RssArticle(67777770);
 
         webArticles.add(webArticle1);
         webArticles.add(webArticle2);

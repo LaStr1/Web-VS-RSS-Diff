@@ -1,21 +1,44 @@
 package cz.lastr.WebVsRssDiff.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class WebArticle {
 
+    @Id
+    @GeneratedValue
+    private long id;
+
     private int articleID;
+
     private String url;
+
     private String date;
+
     private String title;
+
     private String perex;
 
+    public WebArticle(){
+
+    }
     public WebArticle(int articleID, String url, String date, String title, String perex) {
         this.articleID = articleID;
         this.url = url;
         this.date = date;
         this.title = title;
         this.perex = perex;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public int getArticleID() {

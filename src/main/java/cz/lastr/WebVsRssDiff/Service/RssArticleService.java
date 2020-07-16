@@ -1,6 +1,6 @@
 package cz.lastr.WebVsRssDiff.Service;
 
-import cz.lastr.WebVsRssDiff.ModelHibernate.RssArticle;
+import cz.lastr.WebVsRssDiff.Model.RssArticle;
 import cz.lastr.WebVsRssDiff.Repository.RssArticleRepository;
 import org.springframework.stereotype.Service;
 

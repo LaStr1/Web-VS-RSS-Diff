@@ -1,6 +1,6 @@
 package cz.lastr.WebVsRssDiff.Repository;
 
-import cz.lastr.WebVsRssDiff.ModelHibernate.WebArticle;
+import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,6 @@ public class WebRepositoryTest {
     @Test
     public void saveWebArticleTest(){
         WebArticle webArticle = new WebArticle(
-                1,
                 66783210,
                 "https://archiv.ihned.cz/c1-66783210-kureci-kartel-u-pilgrim-s",
                 "26. 6.",

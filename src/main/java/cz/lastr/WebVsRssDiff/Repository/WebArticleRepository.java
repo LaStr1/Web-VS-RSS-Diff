@@ -1,6 +1,6 @@
 package cz.lastr.WebVsRssDiff.Repository;
 
-import cz.lastr.WebVsRssDiff.ModelHibernate.WebArticle;
+import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package cz.lastr.WebVsRssDiff.Repository;
 
-import cz.lastr.WebVsRssDiff.ModelHibernate.RssArticle;
+import cz.lastr.WebVsRssDiff.Model.RssArticle;
 import cz.lastr.WebVsRssDiff.Service.RssArticleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,6 @@ public class RssRepositoryTest {
     @Test
     public void saveRssArticleTest(){
         RssArticle rssArticle = new RssArticle(
-                1,
                 66783210);
         List<RssArticle> rssArticlesList = new ArrayList<>();
 
