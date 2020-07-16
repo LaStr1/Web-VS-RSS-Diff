@@ -11,17 +11,21 @@ public class RssAndWebGetter {
     RssGetter rssGetter;
     WebGetter webGetter;
 
-    public RssAndWebGetter(RssGetter rssGetter, WebGetter webGetter) {
+    RssArticleService rssArticleService;
+    WebArticleService webArticleService;
+
+    public RssAndWebGetter(RssGetter rssGetter, WebGetter webGetter, RssArticleService rssArticleService, WebArticleService webArticleService) {
         this.rssGetter = rssGetter;
         this.webGetter = webGetter;
+        this.rssArticleService = rssArticleService;
+        this.webArticleService = webArticleService;
     }
 
     public void getDataFromRssAndWeb(String fromDate) {
         List<RssArticle> rssFeed = rssGetter.getArticlesFromRSS();
-        // save to db
+        rssArticleService.save(rssFeed);
 
         List<WebArticle> webFeed = webGetter.getArticlesFromWeb(fromDate);
-        // save to db
-
+        webArticleService.save(webFeed);
     }
 }

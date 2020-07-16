@@ -1,5 +1,6 @@
 package cz.lastr.WebVsRssDiff.Controller;
 
+import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import cz.lastr.WebVsRssDiff.Service.RssAndWebGetter;
 import cz.lastr.WebVsRssDiff.Service.RssArticleService;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.util.List;
 
 @Controller
 public class IndexController {
@@ -28,7 +30,8 @@ public class IndexController {
 
     @GetMapping
     public String index(Model model) {
-
+        List<WebArticle> differentArticles = webArticleService.getDiff();
+        model.addAttribute("articles", differentArticles);
         return "index";
     }
 

@@ -22,13 +22,16 @@ public class Schedule {
     // if the user start and shutdown system every day
     @PostConstruct
     public void onStartup(){
-        String today = getTodayDate();
-        rssAndWebGetter.getDataFromRssAndWeb(today);
+        getDataFromRssAndWeb_FromToday();
     }
 
     // if the user have running system multiple days
     @Scheduled(cron ="0 0 3 * * *" )
     public void at3am(){
+        getDataFromRssAndWeb_FromToday();
+    }
+
+    private void getDataFromRssAndWeb_FromToday() {
         String today = getTodayDate();
         rssAndWebGetter.getDataFromRssAndWeb(today);
     }
