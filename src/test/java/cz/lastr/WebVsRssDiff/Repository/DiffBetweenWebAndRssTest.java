@@ -2,6 +2,8 @@ package cz.lastr.WebVsRssDiff.Repository;
 
 import cz.lastr.WebVsRssDiff.Model.RssArticle;
 import cz.lastr.WebVsRssDiff.Model.WebArticle;
+import cz.lastr.WebVsRssDiff.ModelForTempTable.RssArticleTempTable;
+import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import cz.lastr.WebVsRssDiff.Service.RssArticleService;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,36 +25,36 @@ public class DiffBetweenWebAndRssTest {
     @Autowired
     RssArticleService rssArticleService;
 
-    List<WebArticle> webArticles = new ArrayList<>();
-    List<RssArticle> rssArticles = new ArrayList<>();
+    List<WebArticleTempTable> webArticles = new ArrayList<>();
+    List<RssArticleTempTable> rssArticles = new ArrayList<>();
 
-    WebArticle webArticle1;
-    WebArticle webArticle2;
-    WebArticle webArticle3;
-    WebArticle webArticle4;
-    WebArticle webArticle5;
-    WebArticle webArticle6;
-    WebArticle webArticle7;
+    WebArticleTempTable webArticle1;
+    WebArticleTempTable webArticle2;
+    WebArticleTempTable webArticle3;
+    WebArticleTempTable webArticle4;
+    WebArticleTempTable webArticle5;
+    WebArticleTempTable webArticle6;
+    WebArticleTempTable webArticle7;
 
-    RssArticle rssArticle1;
-    RssArticle rssArticle2;
-    RssArticle rssArticle3;
-    RssArticle rssArticle4;
+    RssArticleTempTable rssArticle1;
+    RssArticleTempTable rssArticle2;
+    RssArticleTempTable rssArticle3;
+    RssArticleTempTable rssArticle4;
 
     @BeforeEach
     private void setup(){
-        webArticle1 = new WebArticle(61111110, "https://", "1. 7.", "Title 1", "Text 1");
-        webArticle2 = new WebArticle(62222220, "https://", "1. 7.", "Title 2", "Text 2");
-        webArticle3 = new WebArticle(63333330, "https://", "1. 7.", "Title 3", "Text 3");
-        webArticle4 = new WebArticle(64444440, "https://", "1. 7.", "Title 4", "Text 4");
-        webArticle5 = new WebArticle(65555550, "https://", "1. 7.", "Title 5", "Text 5");
-        webArticle6 = new WebArticle(66666660, "https://", "1. 7.", "Title 6", "Text 6");
-        webArticle7 = new WebArticle(67777770, "https://", "1. 7.", "Title 7", "Text 7");
+        webArticle1 = new WebArticleTempTable(61111110, "https://", "1. 7.", "Title 1", "Text 1");
+        webArticle2 = new WebArticleTempTable(62222220, "https://", "1. 7.", "Title 2", "Text 2");
+        webArticle3 = new WebArticleTempTable(63333330, "https://", "1. 7.", "Title 3", "Text 3");
+        webArticle4 = new WebArticleTempTable(64444440, "https://", "1. 7.", "Title 4", "Text 4");
+        webArticle5 = new WebArticleTempTable(65555550, "https://", "1. 7.", "Title 5", "Text 5");
+        webArticle6 = new WebArticleTempTable(66666660, "https://", "1. 7.", "Title 6", "Text 6");
+        webArticle7 = new WebArticleTempTable(67777770, "https://", "1. 7.", "Title 7", "Text 7");
 
-        rssArticle1 = new RssArticle(61111110);
-        rssArticle2 = new RssArticle(62222220);
-        rssArticle3 = new RssArticle(64444440);
-        rssArticle4 = new RssArticle(67777770);
+        rssArticle1 = new RssArticleTempTable(61111110);
+        rssArticle2 = new RssArticleTempTable(62222220);
+        rssArticle3 = new RssArticleTempTable(64444440);
+        rssArticle4 = new RssArticleTempTable(67777770);
 
         webArticles.add(webArticle1);
         webArticles.add(webArticle2);
@@ -73,7 +75,7 @@ public class DiffBetweenWebAndRssTest {
         webArticleService.save(webArticles);
         rssArticleService.save(rssArticles);
 
-        List<WebArticle> diffWebArticles = webArticleService.getDiff();
+        List<WebArticleTempTable> diffWebArticles = webArticleService.getDiff();
 
         assertTrue(diffWebArticles.contains(webArticle3));
         assertTrue(diffWebArticles.contains(webArticle5));

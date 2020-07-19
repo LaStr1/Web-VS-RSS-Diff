@@ -1,7 +1,9 @@
 package cz.lastr.WebVsRssDiff.Service;
 
 import cz.lastr.WebVsRssDiff.Model.RssArticle;
+import cz.lastr.WebVsRssDiff.ModelForTempTable.RssArticleTempTable;
 import cz.lastr.WebVsRssDiff.Repository.RssArticleRepository;
+import cz.lastr.WebVsRssDiff.RepositoryForTempTables.RssArticleRepositoryTempTable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,17 +11,17 @@ import java.util.List;
 @Service
 public class RssArticleService {
 
-    private RssArticleRepository rssArticleRepository;
+    private RssArticleRepositoryTempTable articleRepositoryTempTable;
 
-    public RssArticleService(RssArticleRepository rssArticleRepository){
-        this.rssArticleRepository = rssArticleRepository;
+    public RssArticleService(RssArticleRepositoryTempTable articleRepositoryTempTable){
+        this.articleRepositoryTempTable = articleRepositoryTempTable;
     }
 
-    public List<RssArticle> findAll(){
-        return rssArticleRepository.findAll();
+    public List<RssArticleTempTable> findAll(){
+        return articleRepositoryTempTable.findAll();
     }
 
-    public void save(List<RssArticle> articles){
-        rssArticleRepository.saveAll(articles);
+    public void save(List<RssArticleTempTable> articles){
+        articleRepositoryTempTable.saveAll(articles);
     }
 }

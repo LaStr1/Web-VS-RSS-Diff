@@ -1,6 +1,7 @@
 package cz.lastr.WebVsRssDiff.Service;
 
 import cz.lastr.WebVsRssDiff.Model.WebArticle;
+import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -14,8 +15,8 @@ import java.util.List;
 @Service
 public class WebGetter {
 
-    public List<WebArticle> getArticlesFromWeb(String fromDate) {
-        List<WebArticle> articlesFromWeb = new ArrayList<>();
+    public List<WebArticleTempTable> getArticlesFromWeb(String fromDate) {
+        List<WebArticleTempTable> articlesFromWeb = new ArrayList<>();
         String urlWithoutDate = "https://archiv.ihned.cz/?p=0A0000&archive[source_date]=";
         String url = urlWithoutDate + fromDate;
 
@@ -48,14 +49,14 @@ public class WebGetter {
                 .get();
     }
 
-    public List<WebArticle> parseWebPage(Document document) {
+    public List<WebArticleTempTable> parseWebPage(Document document) {
         List<String> allUrls = getAllUrls(document);
         List<Integer> allArticleID = getAllArticleID(allUrls);
         List<String> allDates = getAllDates(document);
         List<String> allTitles = getAllTitles(document);
         List<String> allPerexs = getAllPerexs(document);
 
-        List<WebArticle> articlesFromWebPage = makeAllArticles(allUrls, allArticleID, allDates, allTitles, allPerexs);
+        List<WebArticleTempTable> articlesFromWebPage = makeAllArticles(allUrls, allArticleID, allDates, allTitles, allPerexs);
         return articlesFromWebPage;
     }
 
@@ -126,13 +127,13 @@ public class WebGetter {
         return allPerexs;
     }
 
-    private List<WebArticle> makeAllArticles(List<String> allUrls,
+    private List<WebArticleTempTable> makeAllArticles(List<String> allUrls,
                                              List<Integer> allArticleID,
                                              List<String> allDates,
                                              List<String> allTitles,
                                              List<String> allPerexs) {
 
-        List<WebArticle> articlesFromWebPage = new ArrayList<>();
+        List<WebArticleTempTable> articlesFromWebPage = new ArrayList<>();
 
         int allItemsCount = allArticleID.size();
         for (int itemsCount = 0; itemsCount < allItemsCount; ++itemsCount) {
@@ -142,7 +143,7 @@ public class WebGetter {
             String title = allTitles.get(itemsCount);
             String perex = allPerexs.get(itemsCount);
 
-            WebArticle article = new WebArticle();
+            WebArticleTempTable article = new WebArticleTempTable();
             article.setArticleID(articleID);
             article.setUrl(url);
             article.setDate(date);

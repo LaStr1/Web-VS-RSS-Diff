@@ -6,6 +6,7 @@ import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import cz.lastr.WebVsRssDiff.Model.RssArticle;
+import cz.lastr.WebVsRssDiff.ModelForTempTable.RssArticleTempTable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -17,8 +18,8 @@ import java.util.List;
 @Service
 public class RssGetter {
 
-    public List<RssArticle> getArticlesFromRSS() {
-        List<RssArticle> articlesFromRSS;
+    public List<RssArticleTempTable> getArticlesFromRSS() {
+        List<RssArticleTempTable> articlesFromRSS;
 
         SyndFeed feed = getSyndFeed();
         articlesFromRSS = parseRssFeed(feed);
@@ -54,9 +55,9 @@ public class RssGetter {
         return url;
     }
 
-    public List<RssArticle> parseRssFeed(SyndFeed feed) {
+    public List<RssArticleTempTable> parseRssFeed(SyndFeed feed) {
         List<SyndEntry> itemsInFeed;
-        List<RssArticle> articlesFromRSS;
+        List<RssArticleTempTable> articlesFromRSS;
 
         itemsInFeed = feed.getEntries();
 
@@ -65,8 +66,8 @@ public class RssGetter {
         return articlesFromRSS;
     }
 
-    private List<RssArticle> getArticlesFromFeed(List<SyndEntry> itemsInFeed) {
-        List<RssArticle> articlesFromRSS = new ArrayList<>();
+    private List<RssArticleTempTable> getArticlesFromFeed(List<SyndEntry> itemsInFeed) {
+        List<RssArticleTempTable> articlesFromRSS = new ArrayList<>();
 
         for (SyndEntry item : itemsInFeed){
             int indexOfDash = getIndexOfDash(item);
@@ -74,7 +75,7 @@ public class RssGetter {
             String articleAsString = getArticleAsString(item, indexOfDash);
             int articleAsInteger = parseArticleToInteger(articleAsString);
 
-            RssArticle rssArticle = new RssArticle();
+            RssArticleTempTable rssArticle = new RssArticleTempTable();
             rssArticle.setArticleID(articleAsInteger);
 
             articlesFromRSS.add(rssArticle);

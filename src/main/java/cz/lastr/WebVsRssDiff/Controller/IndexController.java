@@ -1,6 +1,7 @@
 package cz.lastr.WebVsRssDiff.Controller;
 
 import cz.lastr.WebVsRssDiff.Model.WebArticle;
+import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import cz.lastr.WebVsRssDiff.Service.RssAndWebGetter;
 import cz.lastr.WebVsRssDiff.Service.RssArticleService;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
@@ -30,7 +31,7 @@ public class IndexController {
 
     @GetMapping
     public String index(Model model) {
-        List<WebArticle> differentArticles = webArticleService.getDiff();
+        List<WebArticleTempTable> differentArticles = webArticleService.getDiff();
         model.addAttribute("articles", differentArticles);
         return "index";
     }

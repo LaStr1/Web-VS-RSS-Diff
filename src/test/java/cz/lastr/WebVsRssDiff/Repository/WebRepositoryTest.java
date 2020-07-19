@@ -1,6 +1,7 @@
 package cz.lastr.WebVsRssDiff.Repository;
 
 import cz.lastr.WebVsRssDiff.Model.WebArticle;
+import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +21,14 @@ public class WebRepositoryTest {
 
     @Test
     public void saveWebArticleTest(){
-        WebArticle webArticle = new WebArticle(
+        WebArticleTempTable webArticle = new WebArticleTempTable(
                 66783210,
                 "https://archiv.ihned.cz/c1-66783210-kureci-kartel-u-pilgrim-s",
                 "26. 6.",
                 "Kuřecí kartel u Pilgrim's",
                 "Komentář Marka Dongresa Americké ministerstvo spravedlnosti přišlo začátkem měsíce se zprávou, že producent kuřat Pilgrim's Pride spolu s dalšími na trhu fixoval...");
 
-        List<WebArticle> webArticlesList = new ArrayList<>();
+        List<WebArticleTempTable> webArticlesList = new ArrayList<>();
         webArticlesList.add(webArticle);
 
         webArticleService.save(webArticlesList);

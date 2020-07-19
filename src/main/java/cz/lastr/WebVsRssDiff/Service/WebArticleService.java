@@ -1,7 +1,9 @@
 package cz.lastr.WebVsRssDiff.Service;
 
 import cz.lastr.WebVsRssDiff.Model.WebArticle;
+import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import cz.lastr.WebVsRssDiff.Repository.WebArticleRepository;
+import cz.lastr.WebVsRssDiff.RepositoryForTempTables.WebArticleRepositoryTempTable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,30 +18,30 @@ public class WebArticleService {
     @PersistenceContext
     EntityManager entityManager;
 
-    private WebArticleRepository webArticleRepository;
+    private WebArticleRepositoryTempTable webArticleRepositoryTempTable;
 
-    public WebArticleService(WebArticleRepository webArticleRepository) {
-        this.webArticleRepository = webArticleRepository;
+    public WebArticleService(WebArticleRepositoryTempTable webArticleRepositoryTempTable) {
+        this.webArticleRepositoryTempTable = webArticleRepositoryTempTable;
     }
 
-    public List<WebArticle> findAll(){
-        return webArticleRepository.findAll();
+    public List<WebArticleTempTable> findAll(){
+        return webArticleRepositoryTempTable.findAll();
     }
 
-    public void save(List<WebArticle> articles){
-        webArticleRepository.saveAll(articles);
+    public void save(List<WebArticleTempTable> articles){
+        webArticleRepositoryTempTable.saveAll(articles);
     }
 
     @Transactional
-    public List<WebArticle> getDiff() {
-        TypedQuery<WebArticle> diffQuery = entityManager.createQuery(
+    public List<WebArticleTempTable> getDiff() {
+        TypedQuery<WebArticleTempTable> diffQuery = entityManager.createQuery(
                 "select webArticle " +
-                        "from WebArticle webArticle " +
-                        "left outer join RssArticle rssArticle on webArticle.articleID = rssArticle.articleID " +
+                        "from WebArticleTempTable webArticle " +
+                        "left outer join RssArticleTempTable rssArticle on webArticle.articleID = rssArticle.articleID " +
                         "where rssArticle.id is null ",
-                WebArticle.class);
+                WebArticleTempTable.class);
 
-        List<WebArticle> diffWebArticles = diffQuery.getResultList();
+        List<WebArticleTempTable> diffWebArticles = diffQuery.getResultList();
 
         return diffWebArticles;
     }
