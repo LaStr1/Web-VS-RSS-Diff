@@ -1,6 +1,5 @@
 package cz.lastr.WebVsRssDiff.RepositoryForTempTables;
 
-import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -41,7 +41,7 @@ public class RssArticle {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof RssArticle)) return false;
         RssArticle that = (RssArticle) o;
         return articleID == that.articleID;
     }

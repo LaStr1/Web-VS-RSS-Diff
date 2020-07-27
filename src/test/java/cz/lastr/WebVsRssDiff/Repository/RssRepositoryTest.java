@@ -1,6 +1,5 @@
 package cz.lastr.WebVsRssDiff.Repository;
 
-import cz.lastr.WebVsRssDiff.Model.RssArticle;
 import cz.lastr.WebVsRssDiff.ModelForTempTable.RssArticleTempTable;
 import cz.lastr.WebVsRssDiff.Service.RssArticleService;
 import org.junit.jupiter.api.Test;

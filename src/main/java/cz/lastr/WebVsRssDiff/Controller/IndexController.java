@@ -1,6 +1,5 @@
 package cz.lastr.WebVsRssDiff.Controller;
 
-import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import cz.lastr.WebVsRssDiff.Service.RssAndWebGetter;
 import cz.lastr.WebVsRssDiff.Service.RssArticleService;

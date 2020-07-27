@@ -1,6 +1,5 @@
 package cz.lastr.WebVsRssDiff.Service;
 
-import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

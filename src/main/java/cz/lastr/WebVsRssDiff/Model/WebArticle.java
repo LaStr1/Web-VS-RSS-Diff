@@ -1,15 +1,13 @@
 package cz.lastr.WebVsRssDiff.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 public class WebArticle {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private int articleID;
@@ -84,13 +82,13 @@ public class WebArticle {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WebArticle article = (WebArticle) o;
-        return articleID == article.articleID &&
-                Objects.equals(url, article.url) &&
-                Objects.equals(date, article.date) &&
-                Objects.equals(title, article.title) &&
-                Objects.equals(perex, article.perex);
+        if (!(o instanceof WebArticle)) return false;
+        WebArticle that = (WebArticle) o;
+        return articleID == that.articleID &&
+                Objects.equals(url, that.url) &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(perex, that.perex);
     }
 
     @Override

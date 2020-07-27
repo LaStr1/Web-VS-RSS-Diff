@@ -1,6 +1,5 @@
 package cz.lastr.WebVsRssDiff.Repository;
 
-import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
 import org.junit.jupiter.api.Test;
@@ -33,7 +32,7 @@ public class WebRepositoryTest {
 
         webArticleService.save(webArticlesList);
 
-        assertNotNull(webArticleService.findAll());
-        assertEquals(webArticleService.findAll().get(0).getArticleID(), 66783210);
+        assertNotNull(webArticleService.findAllInTempTable());
+        assertEquals(webArticleService.findAllInTempTable().get(0).getArticleID(), 66783210);
     }
 }

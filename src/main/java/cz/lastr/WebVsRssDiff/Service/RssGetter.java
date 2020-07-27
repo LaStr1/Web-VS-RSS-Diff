@@ -5,7 +5,6 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
-import cz.lastr.WebVsRssDiff.Model.RssArticle;
 import cz.lastr.WebVsRssDiff.ModelForTempTable.RssArticleTempTable;
 import org.springframework.stereotype.Service;
 
