@@ -32,39 +32,61 @@ public class WebArticleService {
         return webArticleRepositoryTempTable.findAll();
     }
 
-    public List<WebArticle> findAllRegular(){
+    public List<WebArticle> findAll(){
         return webArticleRepository.findAll();
     }
 
     public void save(List<WebArticleTempTable> articles){
         deleteAllArticlesInTempTable();
-        saveToTempTable(articles);
+        saveToTemp(articles);
         //saveOnlyNew();
     }
 
     public void saveWithOnlyNew(List<WebArticleTempTable> articles){
         deleteAllArticlesInTempTable();
-        saveToTempTable(articles);
-        saveOnlyNew();
+        saveToTemp(articles);
+        saveToRegularIfNotExist();
     }
 
     public void deleteAllArticlesInTempTable(){
         webArticleRepositoryTempTable.deleteAllInBatch();
     }
 
-    public void saveToTempTable(List<WebArticleTempTable> articles){
+    public void deleteAllArticles(){
+        webArticleRepository.deleteAllInBatch();
+    }
+    public void saveToTemp(List<WebArticleTempTable> articles){
         webArticleRepositoryTempTable.saveAll(articles);
     }
 
-    public WebArticle saveToRegularTable(WebArticle webArticle){
-        return webArticleRepository.save(webArticle);
+    public void saveToRegularTable(List<WebArticle> articles){
+        webArticleRepository.saveAll(articles);
     }
 
     @Transactional
-    public void saveOnlyNew(){
+    public boolean containDuplicate(){
+        boolean containDuplicate = false;
+
+        TypedQuery<Integer> getDuplicateQuery = entityManager.createQuery("select webarticle.articleID " +
+                                                                    "from WebArticle webarticle " +
+                                                                    "where type(webarticle) = WebArticle " +
+                                                                    "group by webarticle.articleID " +
+                                                                    "having count(webarticle.articleID) > 1", Integer.class);
+        List<Integer> duplicateArticles = getDuplicateQuery.getResultList();
+
+        if (!duplicateArticles.isEmpty()){
+            containDuplicate = true;
+        }
+
+        return containDuplicate;
+    }
+
+    @Transactional
+    public void saveToRegularIfNotExist(){
         Session s = entityManager.unwrap(Session.class);
 
-        Query query = s.createQuery("insert into WebArticle(articleID, url, date, title, perex) select wT.articleID, wT.url, wT.date, wT.title, wT.perex from WebArticleTempTable wT"); // where not exists (select wTT.articleID from WebArticleTempTable wTT where wT.articleID = wTT.articleID)");
+        Query query = s.createQuery("insert into WebArticle(articleID, url, date, title, perex) select wT.articleID, wT.url, wT.date, wT.title, wT.perex from WebArticleTempTable wT where not exists (select we.articleID, we.url, we.date, we.title, we.perex from WebArticle we where type(we) = WebArticle and wT.articleID = we.articleID)");
+        //Query query = s.createQuery("insert into WebArticle(articleID, url, date, title, perex) select wT.articleID, wT.url, wT.date, wT.title, wT.perex from WebArticleTempTable wT left join WebArticle we on we.articleID = wT.articleID where we.articleID is null and type(we) =WebArticle ");
         query.executeUpdate();
     }
 
