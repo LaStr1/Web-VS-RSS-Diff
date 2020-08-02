@@ -75,7 +75,7 @@ public class DiffBetweenWebAndRssTest {
         webArticleService.save(webArticles);
         rssArticleService.save(rssArticles);
 
-        List<WebArticleTempTable> diffWebArticles = webArticleService.getDiff();
+        List<WebArticleTempTable> diffWebArticles = webArticleService.getDiffBetweenRssAndWeb();
 
         assertTrue(diffWebArticles.contains(webArticle3));
         assertTrue(diffWebArticles.contains(webArticle5));

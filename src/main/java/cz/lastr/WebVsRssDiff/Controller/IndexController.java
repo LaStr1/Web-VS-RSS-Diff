@@ -2,7 +2,6 @@ package cz.lastr.WebVsRssDiff.Controller;
 
 import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import cz.lastr.WebVsRssDiff.Service.RssAndWebGetter;
-import cz.lastr.WebVsRssDiff.Service.RssArticleService;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,18 +18,16 @@ import java.util.List;
 public class IndexController {
     RssAndWebGetter rssAndWebGetter;
 
-    RssArticleService rssArticleService;
     WebArticleService webArticleService;
 
-    public IndexController(RssAndWebGetter rssAndWebGetter, RssArticleService rssArticleService, WebArticleService webArticleService){
+    public IndexController(RssAndWebGetter rssAndWebGetter, WebArticleService webArticleService){
         this.rssAndWebGetter = rssAndWebGetter;
-        this.rssArticleService = rssArticleService;
         this.webArticleService = webArticleService;
     }
 
     @GetMapping
     public String index(Model model) {
-        List<WebArticleTempTable> differentArticles = webArticleService.getDiff();
+        List<WebArticleTempTable> differentArticles = webArticleService.getDiffBetweenRssAndWeb();
         model.addAttribute("articles", differentArticles);
         return "index";
     }

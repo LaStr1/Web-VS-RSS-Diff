@@ -35,17 +35,17 @@ public class SaveOnlyNewWebArticlesTest {
                 "Title 2",
                 "Perex 2");
 
-        List<WebArticleTempTable> testArticles = new ArrayList<>();
-        testArticles.add(article1);
-        testArticles.add(article2);
+        List<WebArticleTempTable> firstInsertArticles = new ArrayList<>();
+        firstInsertArticles.add(article1);
+        firstInsertArticles.add(article2);
 
-        webArticleService.saveToTemp(testArticles);
+        webArticleService.saveToTempTable(firstInsertArticles);
 
-        webArticleService.saveToRegularIfNotExist();
+        webArticleService.saveFromTempTableToRegularTableIfNotExist();
 
-        List<WebArticleTempTable> testArticlesWebArticleTempTables = new ArrayList<>();
-        testArticlesWebArticleTempTables.add(article1);
-        testArticlesWebArticleTempTables.add(article2);
+        List<WebArticleTempTable> secondInsertArticles = new ArrayList<>();
+        secondInsertArticles.add(article1);
+        secondInsertArticles.add(article2);
 
         WebArticleTempTable article3 = new WebArticleTempTable(
                 67777770,
@@ -54,10 +54,10 @@ public class SaveOnlyNewWebArticlesTest {
                 "Title 2",
                 "Perex 2");
 
-        testArticlesWebArticleTempTables.add(article3);
+        secondInsertArticles.add(article3);
 
-        webArticleService.saveToTemp(testArticlesWebArticleTempTables);
-        webArticleService.saveToRegularIfNotExist();
+        webArticleService.saveToTempTable(secondInsertArticles);
+        webArticleService.saveFromTempTableToRegularTableIfNotExist();
 
         assertFalse(webArticleService.containDuplicate());
     }

@@ -31,7 +31,7 @@ public class SaveArticleToTempTableTest {
         List<WebArticleTempTable> articlesTempTable = new ArrayList<>();
         articlesTempTable.add(article1);
 
-        webArticleService.saveToTemp(articlesTempTable);
+        webArticleService.saveToTempTable(articlesTempTable);
 
         List<WebArticleTempTable> articlesFromTempTable = webArticleService.findAllInTempTable();
 
