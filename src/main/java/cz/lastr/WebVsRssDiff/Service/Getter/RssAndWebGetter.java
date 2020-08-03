@@ -1,7 +1,5 @@
-package cz.lastr.WebVsRssDiff.Service;
+package cz.lastr.WebVsRssDiff.Service.Getter;
 
-import cz.lastr.WebVsRssDiff.Service.Getter.RssGetAndSave;
-import cz.lastr.WebVsRssDiff.Service.Getter.WebGetAndSave;
 import org.springframework.stereotype.Service;
 
 @Service

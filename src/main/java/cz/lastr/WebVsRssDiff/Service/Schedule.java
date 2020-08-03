@@ -1,5 +1,6 @@
 package cz.lastr.WebVsRssDiff.Service;
 
+import cz.lastr.WebVsRssDiff.Service.Getter.RssAndWebGetter;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

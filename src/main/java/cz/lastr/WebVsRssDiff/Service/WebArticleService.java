@@ -14,6 +14,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
+@Transactional
 public class WebArticleService {
 
     private EntityManager entityManager;
@@ -50,7 +51,6 @@ public class WebArticleService {
         webArticleRepositoryTempTable.saveAll(articles);
     }
 
-    @Transactional
     public void saveFromTempTableToRegularTableIfNotExist(){
         Session s = entityManager.unwrap(Session.class);
 
@@ -75,7 +75,6 @@ public class WebArticleService {
         webArticleRepository.saveAll(articles);
     }
 
-    @Transactional
     public boolean containDuplicate(){
         boolean containDuplicate = false;
 
@@ -96,9 +95,6 @@ public class WebArticleService {
         return containDuplicate;
     }
 
-
-
-    @Transactional
     public List<WebArticleTempTable> getDiffBetweenRssAndWeb() {
         TypedQuery<WebArticleTempTable> diffQuery = entityManager.createQuery(
                 "select webArticle " +
