@@ -21,8 +21,8 @@ public class WebArticle {
     private String perex;
 
     public WebArticle(){
-
     }
+
     public WebArticle(int articleID, String url, String date, String title, String perex) {
         this.articleID = articleID;
         this.url = url;

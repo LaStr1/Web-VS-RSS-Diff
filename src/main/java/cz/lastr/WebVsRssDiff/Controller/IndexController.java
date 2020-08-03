@@ -1,7 +1,8 @@
 package cz.lastr.WebVsRssDiff.Controller;
 
 import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
-import cz.lastr.WebVsRssDiff.Service.RssAndWebGetter;
+import cz.lastr.WebVsRssDiff.Service.Getter.RssGetAndSave;
+import cz.lastr.WebVsRssDiff.Service.Getter.WebGetAndSave;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,17 +17,20 @@ import java.util.List;
 
 @Controller
 public class IndexController {
-    RssAndWebGetter rssAndWebGetter;
-
+    RssGetAndSave rssGetAndSave;
+    WebGetAndSave webGetAndSave;
     WebArticleService webArticleService;
 
-    public IndexController(RssAndWebGetter rssAndWebGetter, WebArticleService webArticleService){
-        this.rssAndWebGetter = rssAndWebGetter;
+    public IndexController(RssGetAndSave rssGetAndSave, WebGetAndSave webGetAndSave, WebArticleService webArticleService) {
+        this.rssGetAndSave = rssGetAndSave;
+        this.webGetAndSave = webGetAndSave;
         this.webArticleService = webArticleService;
     }
 
     @GetMapping
     public String index(Model model) {
+        rssGetAndSave.getDataFromRssAndSave();
+
         List<WebArticleTempTable> differentArticles = webArticleService.getDiffBetweenRssAndWeb();
         model.addAttribute("articles", differentArticles);
         return "index";
@@ -34,14 +38,14 @@ public class IndexController {
 
     @GetMapping(value = "/{fromDate}/")
     public String fromDate(@PathVariable String fromDate){
-        LocalDate validDate = null;
+        LocalDate validDate;
         DateTimeFormatter formatter = DateTimeFormatter
                 .ofPattern("uuuu-MM-dd")
                 .withResolverStyle(ResolverStyle.STRICT);
 
         try {
             validDate = LocalDate.parse(fromDate,formatter);
-            rssAndWebGetter.getDataFromRssAndWeb(validDate.toString());
+            webGetAndSave.getDataFromWebAndSave(validDate.toString());
         }
         catch (DateTimeParseException dateTimeParseException){
             System.out.println(dateTimeParseException.toString());

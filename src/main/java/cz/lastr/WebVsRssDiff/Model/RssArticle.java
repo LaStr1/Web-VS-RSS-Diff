@@ -15,7 +15,6 @@ public class RssArticle {
     private int articleID;
 
     public RssArticle(){
-
     }
 
     public RssArticle(int articleID) {

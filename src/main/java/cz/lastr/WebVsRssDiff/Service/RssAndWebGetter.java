@@ -1,31 +1,21 @@
 package cz.lastr.WebVsRssDiff.Service;
 
-import cz.lastr.WebVsRssDiff.ModelForTempTable.RssArticleTempTable;
-import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
+import cz.lastr.WebVsRssDiff.Service.Getter.RssGetAndSave;
+import cz.lastr.WebVsRssDiff.Service.Getter.WebGetAndSave;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class RssAndWebGetter {
-    RssGetter rssGetter;
-    WebGetter webGetter;
+    RssGetAndSave rssGetAndSave;
+    WebGetAndSave webGetAndSave;
 
-    RssArticleService rssArticleService;
-    WebArticleService webArticleService;
-
-    public RssAndWebGetter(RssGetter rssGetter, WebGetter webGetter, RssArticleService rssArticleService, WebArticleService webArticleService) {
-        this.rssGetter = rssGetter;
-        this.webGetter = webGetter;
-        this.rssArticleService = rssArticleService;
-        this.webArticleService = webArticleService;
+    public RssAndWebGetter(RssGetAndSave rssGetAndSave, WebGetAndSave webGetAndSave) {
+        this.rssGetAndSave = rssGetAndSave;
+        this.webGetAndSave = webGetAndSave;
     }
 
     public void getDataFromRssAndWeb(String fromDate) {
-        List<RssArticleTempTable> rssFeed = rssGetter.getArticlesFromRSS();
-        rssArticleService.save(rssFeed);
-
-        List<WebArticleTempTable> webFeed = webGetter.getArticlesFromWeb(fromDate);
-        webArticleService.save(webFeed);
+        rssGetAndSave.getDataFromRssAndSave();
+        webGetAndSave.getDataFromWebAndSave(fromDate);
     }
 }
