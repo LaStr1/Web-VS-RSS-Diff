@@ -36,13 +36,6 @@ public class FindDuplicateTest {
                 "Title",
                 "Perex");
 
-        WebArticle article3 = new WebArticle(
-                62222220,
-                "https://",
-                "1. 1.",
-                "Title",
-                "Perex");
-
         List<WebArticle> articles = new ArrayList<>();
         articles.add(article1);
         articles.add(article2);
@@ -51,6 +44,12 @@ public class FindDuplicateTest {
 
         assertFalse(webArticleService.containDuplicate());
 
+        WebArticle article3 = new WebArticle(
+                62222220,
+                "https://",
+                "1. 1.",
+                "Title",
+                "Perex");
 
         articles.add(article3);
 
