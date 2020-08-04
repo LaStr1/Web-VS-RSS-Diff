@@ -51,11 +51,11 @@ public class WebGetter {
     public List<WebArticleTempTable> parseWebPage(Document document) {
         List<String> allUrls = getAllUrls(document);
         List<Integer> allArticleID = getAllArticleID(allUrls);
-        List<String> allDates = getAllDates(document);
+        String date = getDate(document);
         List<String> allTitles = getAllTitles(document);
         List<String> allPerexs = getAllPerexs(document);
 
-        List<WebArticleTempTable> articlesFromWebPage = makeAllArticles(allUrls, allArticleID, allDates, allTitles, allPerexs);
+        List<WebArticleTempTable> articlesFromWebPage = makeAllArticles(allUrls, allArticleID, date, allTitles, allPerexs);
         return articlesFromWebPage;
     }
 
@@ -89,16 +89,12 @@ public class WebGetter {
         return allArticleID;
     }
 
-    private List<String> getAllDates(Document document) {
-        List<String> allDates = new ArrayList<>();
-        Elements dates = document.select(".article-time");
-        for (Element date : dates){
-            String dateOfArticle;
-            dateOfArticle = date.text();
+    private String getDate(Document document) {
+        String dateOfArticle;
+        Element dateFromDoc = document.select(".ico-calendar").first();
+        dateOfArticle = dateFromDoc.text();
 
-            allDates.add(dateOfArticle);
-        }
-        return allDates;
+        return dateOfArticle;
     }
 
     private List<String> getAllTitles(Document document) {
@@ -128,7 +124,7 @@ public class WebGetter {
 
     private List<WebArticleTempTable> makeAllArticles(List<String> allUrls,
                                              List<Integer> allArticleID,
-                                             List<String> allDates,
+                                             String date,
                                              List<String> allTitles,
                                              List<String> allPerexs) {
 
@@ -138,7 +134,6 @@ public class WebGetter {
         for (int itemsCount = 0; itemsCount < allItemsCount; ++itemsCount) {
             int articleID = allArticleID.get(itemsCount);
             String url = allUrls.get(itemsCount);
-            String date = allDates.get(itemsCount);
             String title = allTitles.get(itemsCount);
             String perex = allPerexs.get(itemsCount);
 

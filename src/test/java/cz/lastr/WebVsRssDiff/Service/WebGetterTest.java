@@ -23,7 +23,7 @@ class WebGetterTest {
         firstTestedArticle = new WebArticleTempTable(
                 66783210,
                 "https://archiv.ihned.cz/c1-66783210-kureci-kartel-u-pilgrim-s",
-                "26. 6.",
+                "26. 6. 2020",
                 "Kuřecí kartel u Pilgrim's",
                 "Komentář Marka Dongresa Americké ministerstvo spravedlnosti přišlo začátkem měsíce se zprávou, že producent kuřat Pilgrim's Pride spolu s dalšími na trhu fixoval...");
 
