@@ -73,7 +73,7 @@ public class DiffBetweenWebAndRssTest {
     @Test
     public void selectWhichArticlesIsInWebPage_And_NotInRss(){
         webArticleService.saveToTempTable(webArticles);
-        rssArticleService.save(rssArticles);
+        rssArticleService.saveToTempTable(rssArticles);
 
         List<WebArticleTempTable> diffWebArticles = webArticleService.getDiffBetweenRssAndWeb();
 

@@ -19,7 +19,7 @@ public class RssArticleService {
         return articleRepositoryTempTable.findAll();
     }
 
-    public void save(List<RssArticleTempTable> articles){
+    public void saveToTempTable(List<RssArticleTempTable> articles){
         articleRepositoryTempTable.saveAll(articles);
     }
 }
