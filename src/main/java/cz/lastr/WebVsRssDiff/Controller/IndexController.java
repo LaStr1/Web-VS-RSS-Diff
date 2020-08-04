@@ -27,7 +27,7 @@ public class IndexController {
         this.webArticleService = webArticleService;
     }
 
-    @GetMapping
+    @GetMapping(value = "index")
     public String index(Model model) {
         rssGetAndSave.getDataFromRssAndSave();
 
@@ -44,13 +44,13 @@ public class IndexController {
                 .withResolverStyle(ResolverStyle.STRICT);
 
         try {
-            validDate = LocalDate.parse(fromDate,formatter);
+            validDate = LocalDate.parse(fromDate, formatter);
             webGetAndSave.getDataFromWebAndSave(validDate.toString());
         }
         catch (DateTimeParseException dateTimeParseException){
             System.out.println(dateTimeParseException.toString());
         }
 
-        return "index";
+        return "redirect:/index";
     }
 }
