@@ -36,7 +36,7 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping(value = "/{fromDate}/")
+    @GetMapping(value = "/{fromDate}")
     public String fromDate(@PathVariable String fromDate){
         LocalDate validDate;
         DateTimeFormatter formatter = DateTimeFormatter

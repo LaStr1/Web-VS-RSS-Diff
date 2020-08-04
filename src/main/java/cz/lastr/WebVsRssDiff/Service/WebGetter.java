@@ -48,7 +48,7 @@ public class WebGetter {
                 .get();
     }
 
-    public List<WebArticleTempTable> parseWebPage(Document document) {
+    List<WebArticleTempTable> parseWebPage(Document document) {
         List<String> allUrls = getAllUrls(document);
         List<Integer> allArticleID = getAllArticleID(allUrls);
         String date = getDate(document);

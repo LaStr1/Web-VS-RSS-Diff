@@ -38,13 +38,9 @@ public class WebArticleService {
     }
 
     public void save(List<WebArticleTempTable> articles){
-        deleteAllArticlesInTempTable();
         saveToTempTable(articles);
         saveFromTempTableToRegularTableIfNotExist();
-    }
-
-    public void deleteAllArticlesInTempTable(){
-        webArticleRepositoryTempTable.deleteAllInBatch();
+        deleteAllArticlesInTempTable();
     }
 
     public void saveToTempTable(List<WebArticleTempTable> articles){
@@ -65,6 +61,10 @@ public class WebArticleService {
                         "and wT.articleID = we.articleID)");
 
         query.executeUpdate();
+    }
+
+    public void deleteAllArticlesInTempTable(){
+        webArticleRepositoryTempTable.deleteAllInBatch();
     }
 
     public void deleteAllArticles(){
