@@ -7,16 +7,21 @@ import cz.lastr.WebVsRssDiff.RepositoryForTempTables.RssArticleRepositoryTempTab
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
 @Transactional
 public class RssArticleService {
 
+    private EntityManager entityManager;
+
     private RssArticleRepositoryTempTable rssArticleRepositoryTempTable;
     private RssArticleRepository rssArticleRepository;
 
-    public RssArticleService(RssArticleRepositoryTempTable rssArticleRepositoryTempTable, RssArticleRepository rssArticleRepository) {
+    public RssArticleService(EntityManager entityManager, RssArticleRepositoryTempTable rssArticleRepositoryTempTable, RssArticleRepository rssArticleRepository) {
+        this.entityManager = entityManager;
         this.rssArticleRepositoryTempTable = rssArticleRepositoryTempTable;
         this.rssArticleRepository = rssArticleRepository;
     }
@@ -39,5 +44,25 @@ public class RssArticleService {
 
     public void deleteAllArticlesInTempTable() {
         rssArticleRepositoryTempTable.deleteAll();
+    }
+
+    public boolean containDuplicate() {
+        boolean containDuplicate = false;
+
+        TypedQuery<Integer> getDuplicateQuery = entityManager.createQuery(
+                "select rssArticle.articleID " +
+                        "from RssArticle rssArticle " +
+                        "where type(rssArticle) = RssArticle " +
+                        "group by rssArticle.articleID " +
+                        "having count(rssArticle.articleID) > 1",
+                Integer.class);
+
+        List<Integer> duplicateArticles = getDuplicateQuery.getResultList();
+
+        if (!duplicateArticles.isEmpty()){
+            containDuplicate = true;
+        }
+
+        return containDuplicate;
     }
 }
