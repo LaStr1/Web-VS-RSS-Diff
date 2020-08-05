@@ -21,7 +21,7 @@ public class RssArticleService {
         this.rssArticleRepository = rssArticleRepository;
     }
 
-    public List<RssArticleTempTable> findAll(){
+    public List<RssArticleTempTable> findAllInTempTable(){
         return rssArticleRepositoryTempTable.findAll();
     }
 
@@ -35,5 +35,9 @@ public class RssArticleService {
 
     public void saveToRegularTable(List<RssArticle> articles){
         rssArticleRepository.saveAll(articles);
+    }
+
+    public void deleteAllArticlesInTempTable() {
+        rssArticleRepositoryTempTable.deleteAll();
     }
 }

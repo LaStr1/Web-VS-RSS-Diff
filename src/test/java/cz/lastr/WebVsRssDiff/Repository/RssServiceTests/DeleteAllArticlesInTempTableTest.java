@@ -14,23 +14,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @Transactional
-public class SaveArticleToTempTableTest {
+public class DeleteAllArticlesInTempTableTest {
 
     @Autowired
     RssArticleService rssArticleService;
 
     @Test
-    public void saveArticleToTempTable() {
-        RssArticleTempTable article1 = new RssArticleTempTable(
+    public void deleteAllArticlesInTempTable() {
+        RssArticleTempTable article = new RssArticleTempTable(
                 66783210);
-
         List<RssArticleTempTable> articlesTempTable = new ArrayList<>();
-        articlesTempTable.add(article1);
+        articlesTempTable.add(article);
 
         rssArticleService.saveToTempTable(articlesTempTable);
 
+        rssArticleService.deleteAllArticlesInTempTable();
         List<RssArticleTempTable> articlesFromTempTable = rssArticleService.findAllInTempTable();
 
-        assertTrue(articlesFromTempTable.contains(article1));
+        assertTrue(articlesFromTempTable.isEmpty());
     }
 }
