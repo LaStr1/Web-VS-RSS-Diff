@@ -95,15 +95,15 @@ public class WebArticleService {
         return containDuplicate;
     }
 
-    public List<WebArticleTempTable> getDiffBetweenRssAndWeb() {
-        TypedQuery<WebArticleTempTable> diffQuery = entityManager.createQuery(
+    public List<WebArticle> getDiffBetweenRssAndWeb() {
+        TypedQuery<WebArticle> diffQuery = entityManager.createQuery(
                 "select webArticle " +
-                        "from WebArticleTempTable webArticle " +
-                        "left outer join RssArticleTempTable rssArticle on webArticle.articleID = rssArticle.articleID " +
+                        "from WebArticle webArticle " +
+                        "left outer join RssArticle rssArticle on webArticle.articleID = rssArticle.articleID " +
                         "where rssArticle.id is null ",
-                            WebArticleTempTable.class);
+                            WebArticle.class);
 
-        List<WebArticleTempTable> diffWebArticles = diffQuery.getResultList();
+        List<WebArticle> diffWebArticles = diffQuery.getResultList();
 
         return diffWebArticles;
     }

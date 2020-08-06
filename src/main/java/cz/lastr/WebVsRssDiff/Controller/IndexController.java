@@ -1,5 +1,6 @@
 package cz.lastr.WebVsRssDiff.Controller;
 
+import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import cz.lastr.WebVsRssDiff.Service.Getter.RssGetAndSave;
 import cz.lastr.WebVsRssDiff.Service.Getter.WebGetAndSave;
@@ -31,7 +32,7 @@ public class IndexController {
     public String index(Model model) {
         rssGetAndSave.getDataFromRssAndSave();
 
-        List<WebArticleTempTable> differentArticles = webArticleService.getDiffBetweenRssAndWeb();
+        List<WebArticle> differentArticles = webArticleService.getDiffBetweenRssAndWeb();
         model.addAttribute("articles", differentArticles);
         return "index";
     }
