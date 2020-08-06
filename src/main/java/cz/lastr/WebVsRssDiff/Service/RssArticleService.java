@@ -4,10 +4,12 @@ import cz.lastr.WebVsRssDiff.Model.RssArticle;
 import cz.lastr.WebVsRssDiff.ModelForTempTable.RssArticleTempTable;
 import cz.lastr.WebVsRssDiff.Repository.RssArticleRepository;
 import cz.lastr.WebVsRssDiff.RepositoryForTempTables.RssArticleRepositoryTempTable;
+import org.hibernate.Session;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -64,5 +66,21 @@ public class RssArticleService {
         }
 
         return containDuplicate;
+    }
+
+    public void saveFromTempTableToRegularTableIfNotExist(){
+        Session s = entityManager.unwrap(Session.class);
+
+        Query query = s.createQuery(
+                "insert into RssArticle(articleID) " +
+                        "select rT.articleID " +
+                        "from RssArticleTempTable rT " +
+                        "where not exists " +
+                        "(select re.articleID " +
+                        "from RssArticle re " +
+                        "where type(re) = RssArticle " +
+                        "and rT.articleID = re.articleID)");
+
+        query.executeUpdate();
     }
 }
