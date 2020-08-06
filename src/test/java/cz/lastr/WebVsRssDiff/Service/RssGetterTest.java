@@ -23,7 +23,7 @@ class RssGetterTest {
     private SyndFeedInput input;
     private SyndFeed feed;
 
-    private List<RssArticleTempTable> ArticlesFromFeed;
+    private List<RssArticleTempTable> articlesFromFeed;
 
     private RssArticleTempTable firstTestedArticle;
     private RssArticleTempTable secondTestedArticle;
@@ -35,13 +35,13 @@ class RssGetterTest {
         input = new SyndFeedInput();
         feed = input.build(new XmlReader(fileInputStream));
 
-        ArticlesFromFeed = rssGetter.parseRssFeed(feed);
+        articlesFromFeed = rssGetter.parseRssFeed(feed);
 
         firstTestedArticle = new RssArticleTempTable(66783280);
         secondTestedArticle = new RssArticleTempTable(66783260);
 
-        assertTrue(ArticlesFromFeed.contains(firstTestedArticle));
-        assertTrue(ArticlesFromFeed.contains(secondTestedArticle));
+        assertTrue(articlesFromFeed.contains(firstTestedArticle));
+        assertTrue(articlesFromFeed.contains(secondTestedArticle));
     }
 
 }

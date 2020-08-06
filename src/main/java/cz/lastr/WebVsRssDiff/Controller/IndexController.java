@@ -4,6 +4,8 @@ import cz.lastr.WebVsRssDiff.Model.WebArticle;
 import cz.lastr.WebVsRssDiff.Service.Getter.RssGetAndSave;
 import cz.lastr.WebVsRssDiff.Service.Getter.WebGetAndSave;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +19,12 @@ import java.util.List;
 
 @Controller
 public class IndexController {
+    Logger logger = LoggerFactory.getLogger(IndexController.class);
+
     private RssGetAndSave rssGetAndSave;
     private WebGetAndSave webGetAndSave;
     private WebArticleService webArticleService;
+
 
     public IndexController(RssGetAndSave rssGetAndSave, WebGetAndSave webGetAndSave, WebArticleService webArticleService) {
         this.rssGetAndSave = rssGetAndSave;
@@ -27,9 +32,9 @@ public class IndexController {
         this.webArticleService = webArticleService;
     }
 
-    @GetMapping(value = "index")
+    @GetMapping(value = "/")
     public String index(Model model) {
-        rssGetAndSave.getDataFromRssAndSave();
+        //rssGetAndSave.getDataFromRssAndSave();
 
         List<WebArticle> differentArticles = webArticleService.getDiffBetweenWebAndRss();
         model.addAttribute("articles", differentArticles);
@@ -48,9 +53,9 @@ public class IndexController {
             webGetAndSave.getDataFromWebAndSave(validDate.toString());
         }
         catch (DateTimeParseException dateTimeParseException){
-            System.out.println(dateTimeParseException.toString());
+            logger.error(dateTimeParseException.getMessage(), dateTimeParseException);
         }
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 }

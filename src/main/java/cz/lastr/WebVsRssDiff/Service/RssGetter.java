@@ -5,7 +5,10 @@ import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import cz.lastr.WebVsRssDiff.Controller.IndexController;
 import cz.lastr.WebVsRssDiff.ModelForTempTable.RssArticleTempTable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -16,6 +19,7 @@ import java.util.List;
 
 @Service
 public class RssGetter {
+    Logger logger = LoggerFactory.getLogger(RssGetter.class);
 
     public List<RssArticleTempTable> getArticlesFromRSS() {
         List<RssArticleTempTable> articlesFromRSS;
@@ -35,10 +39,10 @@ public class RssGetter {
             feed = input.build(reader);
         }
         catch (IOException ioException){
-            System.out.println("ioException");
+            logger.error(ioException.getMessage(), ioException);
         }
         catch (FeedException feedException){
-            System.out.println("feedException");
+            logger.error(feedException.getMessage(), feedException);
         }
         return feed;
     }
@@ -49,7 +53,7 @@ public class RssGetter {
             url = new URL("https://ihned.cz/?m=rss");
         }
         catch (MalformedURLException malformedURLException){
-            System.out.println("malformedURLException");
+            logger.error(malformedURLException.getMessage(), malformedURLException);
         }
         return url;
     }

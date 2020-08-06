@@ -5,6 +5,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -13,6 +15,7 @@ import java.util.List;
 
 @Service
 public class WebGetter {
+    Logger logger = LoggerFactory.getLogger(WebGetter.class);
 
     public List<WebArticleTempTable> getArticlesFromWeb(String fromDate) {
         List<WebArticleTempTable> articlesFromWeb = new ArrayList<>();
@@ -34,7 +37,8 @@ public class WebGetter {
             htmlPage = getHtmlPage(url);
         }
         catch (IOException ioException){
-            System.out.println(ioException.toString());
+            logger.error(ioException.getMessage(), ioException);
+
         }
         return htmlPage;
     }
