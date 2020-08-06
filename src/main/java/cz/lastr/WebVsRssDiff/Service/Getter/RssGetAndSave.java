@@ -20,6 +20,6 @@ public class RssGetAndSave {
 
     public void getDataFromRssAndSave() {
         List<RssArticleTempTable> rssFeed = rssGetter.getArticlesFromRSS();
-        rssArticleService.saveToTempTable(rssFeed);
+        rssArticleService.save(rssFeed);
     }
 }
