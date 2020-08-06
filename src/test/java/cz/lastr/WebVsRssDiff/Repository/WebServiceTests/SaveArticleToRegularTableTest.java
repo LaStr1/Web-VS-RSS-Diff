@@ -33,7 +33,7 @@ public class SaveArticleToRegularTableTest {
 
         webArticleService.saveToRegularTable(articles);
 
-        List<WebArticle> articlesFromTable = webArticleService.findAll();
+        List<WebArticle> articlesFromTable = webArticleService.findAllInRegularTable();
 
         assertTrue(articlesFromTable.contains(article1));
     }

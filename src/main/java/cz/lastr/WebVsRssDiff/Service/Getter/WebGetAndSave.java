@@ -10,7 +10,6 @@ import java.util.List;
 @Service
 public class WebGetAndSave {
     private WebGetter webGetter;
-
     private WebArticleService webArticleService;
 
     public WebGetAndSave(WebGetter webGetter, WebArticleService webArticleService) {
@@ -20,6 +19,6 @@ public class WebGetAndSave {
 
     public void getDataFromWebAndSave(String fromDate) {
         List<WebArticleTempTable> webFeed = webGetter.getArticlesFromWeb(fromDate);
-        webArticleService.save(webFeed);
+        webArticleService.saveToRegularTableIfNotExist(webFeed);
     }
 }

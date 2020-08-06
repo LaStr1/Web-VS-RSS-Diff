@@ -20,7 +20,7 @@ public class DeleteAllArticlesInTempTableTest {
 
     @Test
     public void deleteAllArticlesInTempTable() {
-        webArticleService.deleteAllArticles();
+        webArticleService.deleteAllArticlesInRegularTable();
         List<WebArticleTempTable> articlesFromTempTable = webArticleService.findAllInTempTable();
 
         assertTrue(articlesFromTempTable.isEmpty());

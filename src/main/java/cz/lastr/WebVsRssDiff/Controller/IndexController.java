@@ -31,7 +31,7 @@ public class IndexController {
     public String index(Model model) {
         rssGetAndSave.getDataFromRssAndSave();
 
-        List<WebArticle> differentArticles = webArticleService.getDiffBetweenRssAndWeb();
+        List<WebArticle> differentArticles = webArticleService.getDiffBetweenWebAndRss();
         model.addAttribute("articles", differentArticles);
         return "index";
     }

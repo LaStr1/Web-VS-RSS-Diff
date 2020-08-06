@@ -18,32 +18,35 @@ import java.util.List;
 public class RssArticleService {
 
     private EntityManager entityManager;
-
-    private RssArticleRepositoryTempTable rssArticleRepositoryTempTable;
     private RssArticleRepository rssArticleRepository;
+    private RssArticleRepositoryTempTable rssArticleRepositoryTempTable;
 
-    public RssArticleService(EntityManager entityManager, RssArticleRepositoryTempTable rssArticleRepositoryTempTable, RssArticleRepository rssArticleRepository) {
+    public RssArticleService(EntityManager entityManager, RssArticleRepository rssArticleRepository, RssArticleRepositoryTempTable rssArticleRepositoryTempTable) {
         this.entityManager = entityManager;
-        this.rssArticleRepositoryTempTable = rssArticleRepositoryTempTable;
         this.rssArticleRepository = rssArticleRepository;
-    }
-
-    public List<RssArticleTempTable> findAllInTempTable(){
-        return rssArticleRepositoryTempTable.findAll();
+        this.rssArticleRepositoryTempTable = rssArticleRepositoryTempTable;
     }
 
     public List<RssArticle> findAllInRegularTable(){
         return rssArticleRepository.findAll();
     }
 
-    public void save(List<RssArticleTempTable> articles){
-        saveToTempTable(articles);
-        saveFromTempTableToRegularTableIfNotExist();
-        deleteAllArticlesInTempTable();
+    public List<RssArticleTempTable> findAllInTempTable(){
+        return rssArticleRepositoryTempTable.findAll();
+    }
+
+    public void saveToRegularTable(List<RssArticle> articles){
+        rssArticleRepository.saveAll(articles);
     }
 
     public void saveToTempTable(List<RssArticleTempTable> articles){
         rssArticleRepositoryTempTable.saveAll(articles);
+    }
+
+    public void saveToRegularTableIfNotExist(List<RssArticleTempTable> articles){
+        saveToTempTable(articles);
+        saveFromTempTableToRegularTableIfNotExist();
+        deleteAllArticlesInTempTable();
     }
 
     public void saveFromTempTableToRegularTableIfNotExist(){
@@ -64,10 +67,6 @@ public class RssArticleService {
 
     public void deleteAllArticlesInTempTable() {
         rssArticleRepositoryTempTable.deleteAll();
-    }
-
-    public void saveToRegularTable(List<RssArticle> articles){
-        rssArticleRepository.saveAll(articles);
     }
 
     public boolean containDuplicate() {

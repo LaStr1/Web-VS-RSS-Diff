@@ -18,33 +18,35 @@ import java.util.List;
 public class WebArticleService {
 
     private EntityManager entityManager;
-
+    private WebArticleRepository webArticleRepository;
     private WebArticleRepositoryTempTable webArticleRepositoryTempTable;
 
-    private WebArticleRepository webArticleRepository;
-
-    public WebArticleService(EntityManager entityManager, WebArticleRepositoryTempTable webArticleRepositoryTempTable, WebArticleRepository webArticleRepository) {
+    public WebArticleService(EntityManager entityManager, WebArticleRepository webArticleRepository, WebArticleRepositoryTempTable webArticleRepositoryTempTable) {
         this.entityManager = entityManager;
-        this.webArticleRepositoryTempTable = webArticleRepositoryTempTable;
         this.webArticleRepository = webArticleRepository;
+        this.webArticleRepositoryTempTable = webArticleRepositoryTempTable;
+    }
+
+    public List<WebArticle> findAllInRegularTable(){
+        return webArticleRepository.findAll();
     }
 
     public List<WebArticleTempTable> findAllInTempTable(){
         return webArticleRepositoryTempTable.findAll();
     }
 
-    public List<WebArticle> findAll(){
-        return webArticleRepository.findAll();
-    }
-
-    public void save(List<WebArticleTempTable> articles){
-        saveToTempTable(articles);
-        saveFromTempTableToRegularTableIfNotExist();
-        deleteAllArticlesInTempTable();
+    public void saveToRegularTable(List<WebArticle> articles){
+        webArticleRepository.saveAll(articles);
     }
 
     public void saveToTempTable(List<WebArticleTempTable> articles){
         webArticleRepositoryTempTable.saveAll(articles);
+    }
+
+    public void saveToRegularTableIfNotExist(List<WebArticleTempTable> articles){
+        saveToTempTable(articles);
+        saveFromTempTableToRegularTableIfNotExist();
+        deleteAllArticlesInTempTable();
     }
 
     public void saveFromTempTableToRegularTableIfNotExist(){
@@ -63,16 +65,12 @@ public class WebArticleService {
         query.executeUpdate();
     }
 
-    public void deleteAllArticlesInTempTable(){
-        webArticleRepositoryTempTable.deleteAllInBatch();
-    }
-
-    public void deleteAllArticles(){
+    public void deleteAllArticlesInRegularTable(){
         webArticleRepository.deleteAllInBatch();
     }
 
-    public void saveToRegularTable(List<WebArticle> articles){
-        webArticleRepository.saveAll(articles);
+    public void deleteAllArticlesInTempTable(){
+        webArticleRepositoryTempTable.deleteAllInBatch();
     }
 
     public boolean containDuplicate(){
@@ -95,7 +93,7 @@ public class WebArticleService {
         return containDuplicate;
     }
 
-    public List<WebArticle> getDiffBetweenRssAndWeb() {
+    public List<WebArticle> getDiffBetweenWebAndRss() {
         TypedQuery<WebArticle> diffQuery = entityManager.createQuery(
                 "select webArticle " +
                         "from WebArticle webArticle " +

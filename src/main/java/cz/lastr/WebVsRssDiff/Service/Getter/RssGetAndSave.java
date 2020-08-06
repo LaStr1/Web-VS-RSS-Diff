@@ -10,7 +10,6 @@ import java.util.List;
 @Service
 public class RssGetAndSave {
     private RssGetter rssGetter;
-
     private RssArticleService rssArticleService;
 
     public RssGetAndSave(RssGetter rssGetter, RssArticleService rssArticleService) {
@@ -20,6 +19,6 @@ public class RssGetAndSave {
 
     public void getDataFromRssAndSave() {
         List<RssArticleTempTable> rssFeed = rssGetter.getArticlesFromRSS();
-        rssArticleService.save(rssFeed);
+        rssArticleService.saveToRegularTableIfNotExist(rssFeed);
     }
 }
