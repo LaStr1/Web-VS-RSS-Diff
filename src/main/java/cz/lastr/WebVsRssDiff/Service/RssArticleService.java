@@ -2,7 +2,6 @@ package cz.lastr.WebVsRssDiff.Service;
 
 import cz.lastr.WebVsRssDiff.Model.RssArticle;
 import cz.lastr.WebVsRssDiff.ModelForTempTable.RssArticleTempTable;
-import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import cz.lastr.WebVsRssDiff.Repository.RssArticleRepository;
 import cz.lastr.WebVsRssDiff.RepositoryForTempTables.RssArticleRepositoryTempTable;
 import org.hibernate.Session;
