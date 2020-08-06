@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class DeleteAllArticlesInTempTableTest {
 
     @Autowired
-    WebArticleService webArticleService;
+    private WebArticleService webArticleService;
 
     @Test
     public void deleteAllArticlesInTempTable() {

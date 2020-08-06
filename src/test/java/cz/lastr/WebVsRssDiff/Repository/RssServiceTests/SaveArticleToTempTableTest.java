@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SaveArticleToTempTableTest {
 
     @Autowired
-    RssArticleService rssArticleService;
+    private RssArticleService rssArticleService;
 
     @Test
     public void saveArticleToTempTable() {

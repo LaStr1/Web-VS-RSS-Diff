@@ -9,9 +9,9 @@ import java.util.List;
 
 @Service
 public class RssGetAndSave {
-    RssGetter rssGetter;
+    private RssGetter rssGetter;
 
-    RssArticleService rssArticleService;
+    private RssArticleService rssArticleService;
 
     public RssGetAndSave(RssGetter rssGetter, RssArticleService rssArticleService) {
         this.rssGetter = rssGetter;

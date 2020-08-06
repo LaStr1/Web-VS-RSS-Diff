@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SaveArticleToTempTableTest {
 
     @Autowired
-    WebArticleService webArticleService;
+    private WebArticleService webArticleService;
 
     @Test
     public void saveArticleToTempTable() {

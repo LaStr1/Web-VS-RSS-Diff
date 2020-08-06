@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class SaveOnlyNewWebArticlesTest {
 
     @Autowired
-    RssArticleService rssArticleService;
+    private RssArticleService rssArticleService;
 
     @Test
     public void saveOnlyNewWebArticles() {

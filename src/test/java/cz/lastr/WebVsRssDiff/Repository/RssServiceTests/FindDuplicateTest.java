@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class FindDuplicateTest {
 
     @Autowired
-    RssArticleService rssArticleService;
+    private RssArticleService rssArticleService;
 
     @Test
     public void findDuplicate(){

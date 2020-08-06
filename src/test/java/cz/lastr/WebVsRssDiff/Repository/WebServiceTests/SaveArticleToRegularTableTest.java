@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SaveArticleToRegularTableTest {
 
     @Autowired
-    WebArticleService webArticleService;
+    private WebArticleService webArticleService;
 
     @Test
     public void saveArticleToRegularTable() {

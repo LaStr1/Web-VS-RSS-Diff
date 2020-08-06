@@ -1,7 +1,6 @@
 package cz.lastr.WebVsRssDiff.Controller;
 
 import cz.lastr.WebVsRssDiff.Model.WebArticle;
-import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import cz.lastr.WebVsRssDiff.Service.Getter.RssGetAndSave;
 import cz.lastr.WebVsRssDiff.Service.Getter.WebGetAndSave;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
@@ -18,9 +17,9 @@ import java.util.List;
 
 @Controller
 public class IndexController {
-    RssGetAndSave rssGetAndSave;
-    WebGetAndSave webGetAndSave;
-    WebArticleService webArticleService;
+    private RssGetAndSave rssGetAndSave;
+    private WebGetAndSave webGetAndSave;
+    private WebArticleService webArticleService;
 
     public IndexController(RssGetAndSave rssGetAndSave, WebGetAndSave webGetAndSave, WebArticleService webArticleService) {
         this.rssGetAndSave = rssGetAndSave;

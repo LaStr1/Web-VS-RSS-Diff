@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class SaveOnlyNewWebArticlesTest {
 
     @Autowired
-    WebArticleService webArticleService;
+    private WebArticleService webArticleService;
 
     @Test
     public void saveOnlyNewWebArticles() {
