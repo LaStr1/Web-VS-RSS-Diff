@@ -21,10 +21,9 @@ import java.util.List;
 public class IndexController {
     Logger logger = LoggerFactory.getLogger(IndexController.class);
 
-    private RssGetAndSave rssGetAndSave;
-    private WebGetAndSave webGetAndSave;
-    private WebArticleService webArticleService;
-
+    private final RssGetAndSave rssGetAndSave;
+    private final WebGetAndSave webGetAndSave;
+    private final WebArticleService webArticleService;
 
     public IndexController(RssGetAndSave rssGetAndSave, WebGetAndSave webGetAndSave, WebArticleService webArticleService) {
         this.rssGetAndSave = rssGetAndSave;
@@ -34,14 +33,14 @@ public class IndexController {
 
     @GetMapping(value = "/")
     public String index(Model model) {
-        //rssGetAndSave.getDataFromRssAndSave();
+        rssGetAndSave.getDataFromRssAndSave();
 
         List<WebArticle> differentArticles = webArticleService.getDiffBetweenWebAndRss();
         model.addAttribute("articles", differentArticles);
         return "index";
     }
 
-    @GetMapping(value = "/{fromDate}")
+    @GetMapping(value = "/{fromDate}/")
     public String fromDate(@PathVariable String fromDate){
         LocalDate validDate;
         DateTimeFormatter formatter = DateTimeFormatter

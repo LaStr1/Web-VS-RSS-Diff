@@ -4,8 +4,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RssAndWebGetter {
-    private RssGetAndSave rssGetAndSave;
-    private WebGetAndSave webGetAndSave;
+    private final RssGetAndSave rssGetAndSave;
+    private final WebGetAndSave webGetAndSave;
 
     public RssAndWebGetter(RssGetAndSave rssGetAndSave, WebGetAndSave webGetAndSave) {
         this.rssGetAndSave = rssGetAndSave;

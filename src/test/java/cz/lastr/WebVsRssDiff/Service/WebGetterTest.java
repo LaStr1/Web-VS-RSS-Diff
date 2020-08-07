@@ -12,15 +12,11 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class WebGetterTest {
-
-    private WebGetter webGetter = new WebGetter();
-
-    private WebArticleTempTable firstTestedArticle;
-    private List<WebArticleTempTable> ArticlesFromFeed;
+    private final WebGetter webGetter = new WebGetter();
 
     @Test
     public void testWebGetterGetArticlesFromWeb() throws IOException {
-        firstTestedArticle = new WebArticleTempTable(
+        WebArticleTempTable firstTestedArticle = new WebArticleTempTable(
                 66783210,
                 "https://archiv.ihned.cz/c1-66783210-kureci-kartel-u-pilgrim-s",
                 "26. 6. 2020",
@@ -31,8 +27,8 @@ class WebGetterTest {
 
         Document document = Jsoup.parse(testPage,"windows-1250");
 
-        ArticlesFromFeed = webGetter.parseWebPage(document);
+        List<WebArticleTempTable> articlesFromFeed = webGetter.parseWebPage(document);
 
-        assertTrue(ArticlesFromFeed.contains(firstTestedArticle));
+        assertTrue(articlesFromFeed.contains(firstTestedArticle));
     }
 }

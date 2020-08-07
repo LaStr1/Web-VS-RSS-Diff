@@ -16,10 +16,9 @@ import java.util.List;
 @Service
 @Transactional
 public class WebArticleService {
-
-    private EntityManager entityManager;
-    private WebArticleRepository webArticleRepository;
-    private WebArticleRepositoryTempTable webArticleRepositoryTempTable;
+    private final EntityManager entityManager;
+    private final WebArticleRepository webArticleRepository;
+    private final WebArticleRepositoryTempTable webArticleRepositoryTempTable;
 
     public WebArticleService(EntityManager entityManager, WebArticleRepository webArticleRepository, WebArticleRepositoryTempTable webArticleRepositoryTempTable) {
         this.entityManager = entityManager;

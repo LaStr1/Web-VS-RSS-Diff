@@ -9,8 +9,8 @@ import java.util.List;
 
 @Service
 public class WebGetAndSave {
-    private WebGetter webGetter;
-    private WebArticleService webArticleService;
+    private final WebGetter webGetter;
+    private final WebArticleService webArticleService;
 
     public WebGetAndSave(WebGetter webGetter, WebArticleService webArticleService) {
         this.webGetter = webGetter;

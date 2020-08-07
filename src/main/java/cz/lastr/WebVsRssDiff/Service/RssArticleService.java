@@ -16,10 +16,9 @@ import java.util.List;
 @Service
 @Transactional
 public class RssArticleService {
-
-    private EntityManager entityManager;
-    private RssArticleRepository rssArticleRepository;
-    private RssArticleRepositoryTempTable rssArticleRepositoryTempTable;
+    private final EntityManager entityManager;
+    private final RssArticleRepository rssArticleRepository;
+    private final RssArticleRepositoryTempTable rssArticleRepositoryTempTable;
 
     public RssArticleService(EntityManager entityManager, RssArticleRepository rssArticleRepository, RssArticleRepositoryTempTable rssArticleRepositoryTempTable) {
         this.entityManager = entityManager;
@@ -88,6 +87,4 @@ public class RssArticleService {
 
         return containDuplicate;
     }
-
-
 }

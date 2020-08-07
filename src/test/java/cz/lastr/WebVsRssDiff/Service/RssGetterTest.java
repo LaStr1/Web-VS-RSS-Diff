@@ -14,31 +14,20 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RssGetterTest {
-    private RssGetter rssGetter = new RssGetter();
-
-    private String fileWithRssFeedInXML = "src/test/java/cz/lastr/WebVsRssDiff/Service/resources/rssFeedExample.xml";
-
-    private FileInputStream fileInputStream;
-
-    private SyndFeedInput input;
-    private SyndFeed feed;
-
-    private List<RssArticleTempTable> articlesFromFeed;
-
-    private RssArticleTempTable firstTestedArticle;
-    private RssArticleTempTable secondTestedArticle;
+    private final RssGetter rssGetter = new RssGetter();
 
     @Test
     public void testRssGetterGetArticlesFromRssFeed() throws IOException, FeedException {
-        fileInputStream = new FileInputStream(fileWithRssFeedInXML);
+        String fileWithRssFeedInXML = "src/test/java/cz/lastr/WebVsRssDiff/Service/resources/rssFeedExample.xml";
+        FileInputStream fileInputStream = new FileInputStream(fileWithRssFeedInXML);
 
-        input = new SyndFeedInput();
-        feed = input.build(new XmlReader(fileInputStream));
+        SyndFeedInput input = new SyndFeedInput();
+        SyndFeed feed = input.build(new XmlReader(fileInputStream));
 
-        articlesFromFeed = rssGetter.parseRssFeed(feed);
+        List<RssArticleTempTable> articlesFromFeed = rssGetter.parseRssFeed(feed);
 
-        firstTestedArticle = new RssArticleTempTable(66783280);
-        secondTestedArticle = new RssArticleTempTable(66783260);
+        RssArticleTempTable firstTestedArticle = new RssArticleTempTable(66783280);
+        RssArticleTempTable secondTestedArticle = new RssArticleTempTable(66783260);
 
         assertTrue(articlesFromFeed.contains(firstTestedArticle));
         assertTrue(articlesFromFeed.contains(secondTestedArticle));

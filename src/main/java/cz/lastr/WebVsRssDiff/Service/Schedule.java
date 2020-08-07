@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Component
 public class Schedule {
-    private RssAndWebGetter rssAndWebGetter;
+    private final RssAndWebGetter rssAndWebGetter;
 
     public Schedule(RssAndWebGetter rssAndWebGetter){
         this.rssAndWebGetter = rssAndWebGetter;

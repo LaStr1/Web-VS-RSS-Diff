@@ -37,8 +37,7 @@ public class WebGetter {
             htmlPage = getHtmlPage(url);
         }
         catch (IOException ioException){
-            logger.error(ioException.getMessage(), ioException);
-
+            logger.error("Url: " + url + "  " + ioException.getMessage(), ioException);
         }
         return htmlPage;
     }
