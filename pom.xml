@@ -14,11 +14,20 @@
     <name>Web-VS-RSS-Diff</name>
     <description>Diff between web and rss feed on HN.cz</description>
 
+    <packaging>war</packaging>
+
     <properties>
+
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -87,6 +96,8 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
+
+        <finalName>${project.artifactId}</finalName>
     </build>
 
 </project>
