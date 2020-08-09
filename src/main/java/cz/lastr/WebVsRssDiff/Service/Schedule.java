@@ -1,6 +1,7 @@
 package cz.lastr.WebVsRssDiff.Service;
 
-import cz.lastr.WebVsRssDiff.Service.Getter.RssAndWebGetter;
+import cz.lastr.WebVsRssDiff.Service.Getter.RssGetAndSave;
+import cz.lastr.WebVsRssDiff.Service.Getter.WebGetAndSave;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -9,15 +10,17 @@ import java.time.LocalDate;
 
 @Component
 public class Schedule {
-    private final RssAndWebGetter rssAndWebGetter;
+    private final RssGetAndSave rssGetAndSave;
+    private final WebGetAndSave webGetAndSave;
 
-    public Schedule(RssAndWebGetter rssAndWebGetter){
-        this.rssAndWebGetter = rssAndWebGetter;
+    public Schedule(RssGetAndSave rssGetAndSave, WebGetAndSave webGetAndSave) {
+        this.rssGetAndSave = rssGetAndSave;
+        this.webGetAndSave = webGetAndSave;
     }
 
     /*
     if the system was shutdown for multiple days,
-    then user can manually select from which date get (web) articles in "url/{fromDate}/"
+    then user can manually select from which date get (web) articles in "url/{fromDate}"
      */
 
     // if the user start and shutdown system every day
@@ -34,7 +37,8 @@ public class Schedule {
 
     private void getDataFromRssAndWeb_FromToday() {
         String today = getTodayDate();
-        rssAndWebGetter.getDataFromRssAndWeb(today);
+        rssGetAndSave.getDataFromRssAndSave();
+        webGetAndSave.getDataFromWebAndSave(today);
     }
 
     private String getTodayDate(){
