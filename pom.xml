@@ -17,7 +17,6 @@
     <packaging>war</packaging>
 
     <properties>
-
         <java.version>1.8</java.version>
     </properties>
 
@@ -98,6 +97,7 @@
         </plugins>
 
         <finalName>${project.artifactId}</finalName>
+
     </build>
 
 </project>

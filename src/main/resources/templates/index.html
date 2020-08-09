@@ -7,10 +7,11 @@
 </head>
 
 <body>
+
 <b><span th:text="${errorMessage}" style="color: red"/></b>
 
 <p>Different articles:</p>
-<p th:text="${date}"></p>
+
 <table>
     <th:block th:each="article:${articles}">
         <tr>
