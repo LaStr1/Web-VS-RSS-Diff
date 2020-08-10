@@ -1,8 +1,7 @@
-package cz.lastr.WebVsRssDiff.Service.Getter;
+package cz.lastr.WebVsRssDiff.Getter;
 
 import cz.lastr.WebVsRssDiff.ModelForTempTable.RssArticleTempTable;
 import cz.lastr.WebVsRssDiff.Service.RssArticleService;
-import cz.lastr.WebVsRssDiff.Service.RssGetter;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package cz.lastr.WebVsRssDiff.Controller;
 
 import cz.lastr.WebVsRssDiff.Model.WebArticle;
-import cz.lastr.WebVsRssDiff.Service.Getter.RssGetAndSave;
+import cz.lastr.WebVsRssDiff.Getter.RssGetAndSave;
 import cz.lastr.WebVsRssDiff.Service.WebArticleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

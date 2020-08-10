@@ -53,13 +53,13 @@ public class RssArticleService {
 
         Query query = s.createQuery(
                 "insert into RssArticle(articleID) " +
-                        "select rT.articleID " +
-                        "from RssArticleTempTable rT " +
+                        "select rssArticleTempTable.articleID " +
+                        "from RssArticleTempTable rssArticleTempTable " +
                         "where not exists " +
-                        "(select re.articleID " +
-                        "from RssArticle re " +
-                        "where type(re) = RssArticle " +
-                        "and rT.articleID = re.articleID)");
+                        "(select rssArticle.articleID " +
+                        "from RssArticle rssArticle " +
+                        "where type(rssArticle) = RssArticle " +
+                        "and rssArticleTempTable.articleID = rssArticle.articleID)");
 
         query.executeUpdate();
     }

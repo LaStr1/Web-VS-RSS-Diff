@@ -1,7 +1,7 @@
-package cz.lastr.WebVsRssDiff.Service;
+package cz.lastr.WebVsRssDiff.Schedule;
 
-import cz.lastr.WebVsRssDiff.Service.Getter.RssGetAndSave;
-import cz.lastr.WebVsRssDiff.Service.Getter.WebGetAndSave;
+import cz.lastr.WebVsRssDiff.Getter.RssGetAndSave;
+import cz.lastr.WebVsRssDiff.Getter.WebGetAndSave;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 

@@ -25,31 +25,31 @@ public class DiffBetweenWebAndRssTest {
     @Autowired
     private RssArticleService rssArticleService;
 
-    private List<WebArticle> webArticles = new ArrayList<>();
-    private List<RssArticle> rssArticles = new ArrayList<>();
+    private final List<WebArticle> webArticles = new ArrayList<>();
+    private final List<RssArticle> rssArticles = new ArrayList<>();
 
-    private WebArticle webArticle1 = new WebArticle(
+    private final WebArticle webArticle1 = new WebArticle(
             61111110, "https://", "1. 7.", "Title 1", "Text 1");
-    private WebArticle webArticle2 = new WebArticle(
+    private final WebArticle webArticle2 = new WebArticle(
             62222220, "https://", "1. 7.", "Title 2", "Text 2");
-    private WebArticle webArticle3 = new WebArticle(
+    private final WebArticle webArticle3 = new WebArticle(
             63333330, "https://", "1. 7.", "Title 3", "Text 3");
-    private WebArticle webArticle4 = new WebArticle(
+    private final WebArticle webArticle4 = new WebArticle(
             64444440, "https://", "1. 7.", "Title 4", "Text 4");
-    private WebArticle webArticle5 = new WebArticle(
+    private final WebArticle webArticle5 = new WebArticle(
             65555550, "https://", "1. 7.", "Title 5", "Text 5");
-    private WebArticle webArticle6 = new WebArticle(
+    private final WebArticle webArticle6 = new WebArticle(
             66666660, "https://", "1. 7.", "Title 6", "Text 6");
-    private WebArticle webArticle7 = new WebArticle(
+    private final WebArticle webArticle7 = new WebArticle(
             67777770, "https://", "1. 7.", "Title 7", "Text 7");
 
-    private RssArticle rssArticle1 = new RssArticle(
+    private final RssArticle rssArticle1 = new RssArticle(
             61111110);
-    private RssArticle rssArticle2 = new RssArticle(
+    private final RssArticle rssArticle2 = new RssArticle(
             62222220);
-    private RssArticle rssArticle3 = new RssArticle(
+    private final RssArticle rssArticle3 = new RssArticle(
             64444440);
-    private RssArticle rssArticle4 = new RssArticle(
+    private final RssArticle rssArticle4 = new RssArticle(
             67777770);
 
     @BeforeEach

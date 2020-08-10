@@ -53,13 +53,13 @@ public class WebArticleService {
 
         Query query = s.createQuery(
                 "insert into WebArticle(articleID, url, date, title, perex) " +
-                        "select wT.articleID, wT.url, wT.date, wT.title, wT.perex " +
-                        "from WebArticleTempTable wT " +
+                        "select webArticleTempTable.articleID, webArticleTempTable.url, webArticleTempTable.date, webArticleTempTable.title, webArticleTempTable.perex " +
+                        "from WebArticleTempTable webArticleTempTable " +
                         "where not exists " +
-                        "(select we.articleID, we.url, we.date, we.title, we.perex " +
-                        "from WebArticle we " +
-                        "where type(we) = WebArticle " +
-                        "and wT.articleID = we.articleID)");
+                        "(select webArticle.articleID, webArticle.url, webArticle.date, webArticle.title, webArticle.perex " +
+                        "from WebArticle webArticle " +
+                        "where type(webArticle) = WebArticle " +
+                        "and webArticleTempTable.articleID = webArticle.articleID)");
 
         query.executeUpdate();
     }

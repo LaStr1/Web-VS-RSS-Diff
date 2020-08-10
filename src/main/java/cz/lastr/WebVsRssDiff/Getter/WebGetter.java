@@ -1,4 +1,4 @@
-package cz.lastr.WebVsRssDiff.Service;
+package cz.lastr.WebVsRssDiff.Getter;
 
 import cz.lastr.WebVsRssDiff.ModelForTempTable.WebArticleTempTable;
 import org.jsoup.Jsoup;

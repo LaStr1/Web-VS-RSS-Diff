@@ -1,4 +1,4 @@
-package cz.lastr.WebVsRssDiff.Service;
+package cz.lastr.WebVsRssDiff.Getter;
 
 import com.rometools.rome.feed.synd.SyndEntry;
 import com.rometools.rome.feed.synd.SyndFeed;
@@ -37,11 +37,8 @@ public class RssGetter {
             XmlReader reader = new XmlReader(url);
             feed = input.build(reader);
         }
-        catch (IOException ioException){
-            logger.error(ioException.getMessage(), ioException);
-        }
-        catch (FeedException feedException){
-            logger.error(feedException.getMessage(), feedException);
+        catch (IOException | FeedException exception){
+            logger.error(exception.getMessage(), exception);
         }
         return feed;
     }

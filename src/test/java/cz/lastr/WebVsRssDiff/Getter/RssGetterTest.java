@@ -1,4 +1,4 @@
-package cz.lastr.WebVsRssDiff.Service;
+package cz.lastr.WebVsRssDiff.Getter;
 
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
@@ -18,7 +18,8 @@ class RssGetterTest {
 
     @Test
     public void testRssGetterGetArticlesFromRssFeed() throws IOException, FeedException {
-        String fileWithRssFeedInXML = "src/test/java/cz/lastr/WebVsRssDiff/Service/resources/rssFeedExample.xml";
+        String fileWithRssFeedInXML = "src/test/java/cz/lastr/WebVsRssDiff/Getter/resources/rssFeedExample.xml";
+
         FileInputStream fileInputStream = new FileInputStream(fileWithRssFeedInXML);
 
         SyndFeedInput input = new SyndFeedInput();

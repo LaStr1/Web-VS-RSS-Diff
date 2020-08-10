@@ -1,6 +1,6 @@
 package cz.lastr.WebVsRssDiff.Controller;
 
-import cz.lastr.WebVsRssDiff.Service.Getter.WebGetAndSave;
+import cz.lastr.WebVsRssDiff.Getter.WebGetAndSave;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
